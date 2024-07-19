@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from './App.jsx';
+import MainPage from './App.jsx';
+import AboutPage from './pages/about/index.jsx';
 import './index.css';
 
 
@@ -10,8 +11,14 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: (
-        <App />
+        <MainPage />
     ),
+  },
+  {
+    path: "/about",
+    element: (
+      <AboutPage />
+    )
   }
 ]);
 
