@@ -4,7 +4,7 @@ import CardService from "../../components/cardService";
 import CardTopic from "../../components/cardTopic";
 import heroImage from '../../assets/images/home-hero.png';
 
-export default function HomePage() {
+export default function AboutPage() {
     return (
         <>
             <Navbar />
@@ -30,6 +30,7 @@ export default function HomePage() {
                 </section>
                 <section id="topic" className="w-full h-auto bg-gradient-to-t from-[#F7EBE6] from-20% to-white to-100%">
                     <div className="container">
+                        <h1 className="text-3xl font-bold text-center">Our Core Topics</h1>
                         <CardTopic />
                     </div>
                 </section>
