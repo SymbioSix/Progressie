@@ -30,7 +30,7 @@ const Card = () => {
                             >
                                 <h3 className="px-3 py-1 text-2xl font-bold bg-white sm:text-base lg:py-2 lg:px-5 lg:text-3xl rounded-2xl w-fit">{data.nameService}</h3>
                                 {/* Cheat style :) */}
-                                <p className="text-2xl font-bold text-transparent">
+                                <p className="text-xl font-bold text-transparent sm:text-2xl md:text-xs lg:text-base 2xl:text-2xl">
                                     {data.description}
                                 </p>
                             </div>
