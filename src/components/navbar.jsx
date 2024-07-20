@@ -5,14 +5,17 @@ import logo from '../assets/images/logo-selfie.svg';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isBackgroundChange, setIsBackgroundChange] = useState('bg-transparent');
+    const [isColorToggle, setIsColorToggle] = useState('text-black');
     const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 500) {
                 setIsBackgroundChange('bg-black');
+                setIsColorToggle('text-white');
             } else {
                 setIsBackgroundChange('bg-transparent');
+                setIsColorToggle('text-black');
             }
         };
 
@@ -45,7 +48,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${isBackgroundChange}`}>
+        <nav className={`fixed inset-x-0 top-0 z-50 pb-3 md:pb-0 transition-colors duration-300 ${isBackgroundChange}`}>
             <div className="container mx-auto">
                 <div className="flex justify-between items-center py-[15px]">
                     <div className="text-2xl font-bold">
@@ -58,8 +61,8 @@ const Navbar = () => {
                         <a href="/about" className={`text-lg px-5 transition-all ${locationNavMenu('/about')}`}>About Us</a>
                         <a href="/faq" className={`text-lg px-5 transition-all ${locationNavMenu('/faq')}`}>FAQ</a>
                     </div>
-                    <div className="md:hidden">
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black hover:text-gray-700 focus:outline-none">
+                    <div id="hamburger" className="md:hidden">
+                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={`${isColorToggle} focus:outline-none`}>
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                             </svg>
@@ -68,7 +71,7 @@ const Navbar = () => {
                 </div>
 
                 {isMenuOpen && (
-                    <div className="flex flex-col space-y-2 md:hidden">
+                    <div className="flex flex-col space-y-2 md:hidden" style={{ transitionProperty: 'opacity, transform' }}>
                         <a href="/" className={`text-lg px-3 transition-all ${locationNavMenu('/')}`}>Home</a>
                         <a href="/about" className={`text-lg px-3 transition-all ${locationNavMenu('/about')}`}>About Us</a>
                         <a href="/faq" className={`text-lg px-3 transition-all ${locationNavMenu('/faq')}`}>FAQ</a>

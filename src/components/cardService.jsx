@@ -43,10 +43,10 @@ const Card = () => {
             pagination={false}
             navigation={false}
             modules={[Autoplay, Pagination, Navigation]}
-            className="ml-[15px] sm:ml-[30px] pb-[50px]"
+            className="ml-0 sm:ml-[30px] pb-[50px]"
         >
             {dataCard.map((data, index) => (
-                <SwiperSlide key={index} className="sm:block sm:items-start sm:justify-start">
+                <SwiperSlide key={index} className="flex items-center justify-center sm:block sm:items-start sm:justify-start">
                     <ReactCardFlip isFlipped={isFlipped[index]} flipDirection="horizontal">
                         <div
                             id="card-service"
@@ -54,15 +54,15 @@ const Card = () => {
                             style={{ backgroundImage: `url(${data.thumbnail})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                             onClick={() => handleFlip(index)}
                         >
-                            <h3 className="px-5 py-1 text-3xl font-bold bg-white roundex-2xl rounded-2xl w-fit">{data.nameService}</h3>
+                            <h3 className="px-3 py-1 text-xl font-bold bg-white sm:text-base lg:py-2 lg:px-5 lg:text-3xl rounded-2xl w-fit">{data.nameService}</h3>
                         </div>
                         <div
                             id="card-service"
-                            className="w-[530px] h-[430px] flex flex-col gap-2 p-5 rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
+                            className="w-[320px] h-[220px] sm:w-[320px] sm:h-[220px] md:w-[390px] md:h-[290px] lg:w-[420px] lg:h-[320px] xl:w-[470px] xl:h-[370px] 2xl:w-[530px] 2xl:h-[430px] sm:max-w-[530px] sm:max-h-[430px] flex flex-col gap-2 p-5 rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
                             onClick={() => handleFlip(index)}
                         >   
                             <h3 className="py-2 text-3xl font-bold">{data.nameService}</h3>
-                            <p className="text-2xl font-bold">{data.description}</p>
+                            <p className="text-xs font-bold text-black sm:text-2xl md:text-base lg:text-xl 2xl:text-2xl">{data.description}</p>
                         </div>
                     </ReactCardFlip>
                 </SwiperSlide>
