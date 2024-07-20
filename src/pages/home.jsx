@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import CardService from "../components/cardService";
@@ -5,6 +7,11 @@ import CardTopic from "../components/cardTopic";
 import heroImage from '../assets/images/home-hero.png';
 
 export default function HomePage() {
+    const navigation = useNavigate(); 
+    const handleLoginClick = () => {
+        navigation('/login');
+    }
+    
     return (
         <>
             <Navbar />
@@ -15,7 +22,7 @@ export default function HomePage() {
                             <div className="flex flex-col w-[100%] sm:w-[35%] gap-2 sm:gap-5">
                                 <h1 className="sm:text-lg text-center sm:text-left md:text-2xl lg:text-4xl font-bold uppercase [text-shadow:_0_4px_4px_rgb(0_0_0_/_0.3)]">Develop a positive mindset here to become the best version of yourself</h1>
                                 <p className="text-center uppercase sm:text-left sm:text-sm md:text-base">let`s get a positive mindset</p>
-                                <button className="w-fit self-center font-bold px-10 rounded-full py-2 shadow-md bg-[#F7EBE6]">Login</button>
+                                <button onClick={handleLoginClick} className="w-fit self-center font-bold px-10 rounded-full py-2 shadow-md bg-[#F7EBE6]">Login</button>
                             </div>
                             <div className="w-[100%] sm:w-[65%]">
                                 <img src={heroImage} alt="Hero image Selfie" className="object-contain" />
