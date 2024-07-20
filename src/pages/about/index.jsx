@@ -1,41 +1,91 @@
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
-import CardService from "../../components/cardService";
-import CardTopic from "../../components/cardTopic";
-import heroImage from '../../assets/images/home-hero.png';
+import aboutTeamImage from "../../assets/images/about-team.png";
+import aboutVisiImage from "../../assets/images/about-visi.png";
 
 export default function AboutPage() {
-    return (
-        <>
-            <Navbar />
-            <main className="w-full h-auto">
-                <section id="hero" className="w-full h-screen hero bg-gradient-to-t from-[#979797] from-10% to-white to-90%">
-                    <div className="container">
-                        <div className="flex items-center justify-center w-full h-full">
-                            <div className="flex flex-col w-[35%] gap-5">
-                                <h1 className="text-4xl font-bold uppercase [text-shadow:_0_4px_4px_rgb(0_0_0_/_0.3)]">Develop a positive mindset here to become the best version of yourself</h1>
-                                <p className="text-base uppercase">let`s get a positive mindset</p>
-                                <button className="w-fit self-center font-bold px-10 rounded-full py-2 shadow-md bg-[#F7EBE6]">Login</button>
-                            </div>
-                            <div className="w-[65%]">
-                                <img src={heroImage} alt="Hero image Selfie" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="service" className="w-full h-auto bg-gradient-to-t from-white from-60% to-[#979797] to-100%">
-                        <div className="flex items-center justify-center w-full h-auto pt-[300px] pb-[100px]">
-                            <CardService />
-                        </div>
-                </section>
-                <section id="topic" className="w-full h-auto bg-gradient-to-t from-[#F7EBE6] from-20% to-white to-100%">
-                    <div className="container">
-                        <h1 className="text-3xl font-bold text-center">Our Core Topics</h1>
-                        <CardTopic />
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </>
-    )
+  return (
+    <>
+      <Navbar />
+      <main className="w-full h-auto">
+        <section
+          id="hero"
+          className="w-full h-[500px] bg-cover bg-[url('/src/assets/images/about-hero.png')]"
+        >
+          <div className="container h-full">
+            <div className="flex items-center justify-center w-full h-full">
+              <p className="text-[70px] font-bold text-white">About Us</p>
+            </div>
+          </div>
+        </section>
+        <section id="description" className="w-full h-auto py-[60px] bg-white">
+          <div className="container h-full">
+            <div className="flex items-center justify-center w-full h-full">
+              <p className="text-4xl font-black text-center text-black px-[170px]">
+                Welcome to Self-ie, your trusted partner in self-improvement and
+                personal development. Our mission is to empower individuals with
+                the knowledge and skills they need to thrive in today`s dynamic
+                world.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section
+          id="team"
+          className="relative w-full h-[80vh] py-[20px] bg-white"
+        >
+          <div className="absolute top-0 left-0 w-[52%] h-full bg-[#F2F2F2] z-0"></div>
+          <div className="container flex items-center justify-center h-full">
+            <div className="relative z-10 flex flex-wrap justify-start w-full">
+              <div className="w-full flex flex-col gap-10 md:w-[55%]">
+                <h3 className="text-5xl font-bold">Meet Our Team</h3>
+                <p className="text-3xl pr-[200px]">
+                  Self-ie is proudly created by the dedicated team at SymbioSix.
+                  Our team comprises experts in education, technology, and
+                  personal development, all working together to provide you with
+                  the best resources for your growth. We are passionate about
+                  helping you succeed and are committed to delivering
+                  high-quality content and support.
+                </p>
+              </div>
+              <div className="w-full flex justify-center items-center md:w-[45%]">
+                <img
+                  src={aboutTeamImage}
+                  alt="About team Selfie"
+                  className="rounded-[20px]"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          id="visi"
+          className="relative w-full h-[60vh] py-[20px] my-[50px] bg-white"
+        >
+          <div className="absolute top-0 right-0 w-[52%] h-full bg-[#F7EBE6] z-0"></div>
+          <div className="container flex items-center justify-center h-full">
+            <div className="relative z-10 flex flex-wrap justify-start w-full">
+              <div className="w-full flex justify-center items-center md:w-[45%]">
+                <img
+                  src={aboutVisiImage}
+                  alt="About team Selfie"
+                  className="rounded-[20px]"
+                />
+              </div>
+              <div className="w-full flex flex-col gap-10 md:w-[55%] pl-[120px]">
+                <h3 className="text-5xl font-black">Our Vision</h3>
+                <p className="text-3xl pr-[100px]">
+                  At Self-ie, we envision a world where everyone has the
+                  opportunity to reach their full potential. We believe in the
+                  power of continuous learning and personal growth to transform
+                  lives and communities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 }

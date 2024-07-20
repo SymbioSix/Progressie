@@ -5,7 +5,8 @@ import logo from '../assets/images/logo-selfie.svg';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isBackgroundChange, setIsBackgroundChange] = useState('bg-transparent');
-    const [isColorToggle, setIsColorToggle] = useState('text-black');
+    const [isColorToggle, setIsColorToggle] = useState('text-white');
+    const [linkColor, setLinkColor] = useState('text-black');
     const location = useLocation();
 
     useEffect(() => {
@@ -25,14 +26,20 @@ const Navbar = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (location.pathname === "/about" || location.pathname === "/faq") {
+            setLinkColor('text-white');
+        } else {
+            setLinkColor('text-black');
+        }
+    }, [location.pathname]);
+
     const locationNavMenu = (path) => {
-        if (location.pathname === path && path === "/about") {
-            if (window.scrollY > 500) {
-                return 'bg-white text-black';
-            } else {
-                return 'bg-white text-black';
-            }
-        } else if (location.pathname === path) {
+        if (location.pathname === path && (path === "/about" || path === "/faq") && window.scrollY < 500) {
+            return 'bg-white text-black';
+        }
+
+        if (location.pathname === path) {
             if (window.scrollY > 500) {
                 return 'bg-white text-black';
             } else {
@@ -57,7 +64,7 @@ const Navbar = () => {
                         </a>
                     </div>
                     <div className="items-center hidden space-x-8 md:flex">
-                        <a href="/" className={`text-lg px-5 transition-all ${locationNavMenu('/')}`}>Home</a>
+                        <a href="/" className={`text-lg px-5 transition-all ${locationNavMenu('/')} ${linkColor}`}>Home</a>
                         <a href="/about" className={`text-lg px-5 transition-all ${locationNavMenu('/about')}`}>About Us</a>
                         <a href="/faq" className={`text-lg px-5 transition-all ${locationNavMenu('/faq')}`}>FAQ</a>
                     </div>
@@ -72,7 +79,7 @@ const Navbar = () => {
 
                 {isMenuOpen && (
                     <div className="flex flex-col space-y-2 md:hidden" style={{ transitionProperty: 'opacity, transform' }}>
-                        <a href="/" className={`text-lg px-3 transition-all ${locationNavMenu('/')}`}>Home</a>
+                        <a href="/" className={`text-lg px-3 transition-all ${locationNavMenu('/')} ${linkColor}`}>Home</a>
                         <a href="/about" className={`text-lg px-3 transition-all ${locationNavMenu('/about')}`}>About Us</a>
                         <a href="/faq" className={`text-lg px-3 transition-all ${locationNavMenu('/faq')}`}>FAQ</a>
                     </div>
