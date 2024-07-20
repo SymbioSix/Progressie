@@ -26,7 +26,7 @@ const Navbar = () => {
     }, []);
 
     const locationNavMenu = (path) => {
-        if (location.pathname === path && path === "/about") {
+        if (location.pathname === path && path === "/about" && path === "/faq") {
             if (window.scrollY > 500) {
                 return 'bg-white text-black';
             } else {

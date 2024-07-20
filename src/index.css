@@ -5,11 +5,12 @@
 @layer base {
   @font-face {
       font-family: 'Montserrat';
-      src: url('./assets/fonts/Montserrat-Regular.ttf') format('ttf');
+      src: url('/src/assets/fonts/Montserrat-Regular.ttf') format('truetype');
   }
 }
 
 body {
   scroll-behavior: smooth;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
+  background-color: #ffffff;
 }
