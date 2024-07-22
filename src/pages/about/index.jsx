@@ -4,6 +4,7 @@ import aboutTeamImage from "../../assets/images/about-team.png";
 import aboutVisiImage from "../../assets/images/about-visi.png";
 import "./about.css";
 
+
 export default function AboutPage() {
   return (
     <>

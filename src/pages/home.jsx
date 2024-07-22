@@ -6,6 +6,7 @@ import CardService from "../components/cardService";
 import CardTopic from "../components/cardTopic";
 import heroImage from "../assets/images/home-hero.png";
 
+
 export default function HomePage() {
   const navigation = useNavigate();
   const handleLoginClick = () => {
