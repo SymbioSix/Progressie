@@ -13,16 +13,34 @@ const AccordionItem = ({ title, desc }) => {
         className="flex items-center justify-between w-full py-2 sm:py-4 focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="p-4 text-lg font-black text-left sm:text-2xl lg:text-3xl w-[95%] sm:w-[90%]">{title}</span>
+        <span className="p-4 text-lg font-black text-left sm:text-2xl lg:text-3xl w-[95%] sm:w-[90%]">
+          {title}
+        </span>
         <span
           className={`p-2 sm:p-5 flex justify-center transform transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
         >
-          <img src={btnDropdown} alt="Icon button dropdown" className="w-[60%] sm:w-full h-[60%] sm:h-full" />
+          <img
+            src={btnDropdown}
+            alt="Icon button dropdown"
+            className="w-[60%] sm:w-full h-[60%] sm:h-full"
+          />
         </span>
       </button>
-      {isOpen && <div className="p-4 text-sm text-black sm:text-xl">{desc}</div>}
+      <hr
+        style={{
+          color: "#00000030",
+          backgroundColor: "#00000031",
+          height: 1,
+          marginLeft: "auto",
+          marginRight: "auto",
+          width: "90%",
+        }}
+      />
+      {isOpen && (
+        <div className="p-4 text-sm text-black sm:text-xl">{desc}</div>
+      )}
     </div>
   );
 };
