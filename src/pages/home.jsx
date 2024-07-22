@@ -23,7 +23,7 @@ export default function HomePage() {
           <div className="container">
             <div className="flex flex-wrap-reverse items-center justify-center w-full h-full">
               <div className="flex flex-col w-[100%] sm:w-[35%] gap-2 sm:gap-5">
-                <h1 className="sm:text-lg text-center sm:text-left md:text-2xl lg:text-4xl font-bold uppercase [text-shadow:_0_4px_4px_rgb(0_0_0_/_0.3)]">
+                <h1 className="sm:text-lg text-center sm:text-left md:text-2xl lg:text-4xl font-black uppercase [text-shadow:_0_4px_4px_rgb(0_0_0_/_0.3)]">
                   Develop a positive mindset here to become the best version of
                   yourself
                 </h1>

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ReactCardFlip from "react-card-flip";
-import dataCard from "../api/cardService";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+
+import dataCard from "../api/cardService";
+
 
 const Card = () => {
   const [isFlipped, setIsFlipped] = useState(

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
+
 import dataCard from "../api/cardTopic";
+
 
 const Card = () => {
   const [isFlipped, setIsFlipped] = useState(

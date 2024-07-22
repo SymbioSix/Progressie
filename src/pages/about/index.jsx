@@ -75,7 +75,7 @@ export default function AboutPage() {
               </div>
               <div className="w-full flex flex-col container-desc-visi gap-5 sm:gap-10 md:w-[55%] pl-0 sm:pl-[130px] md:pl-[60px] lg:pl-[120px] pt-0 xl:pt-[40px]">
                 <h3 className="text-2xl font-black sm:text-4xl 2xl:text-5xl">Our Vision</h3>
-                <p className="text-base sm:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl pr-0 sm:pr-[10px] xl:pr-[100px]">
+                <p className="text-base sm:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl pr-0 sm:pr-[10px] xl:pr-[40px]">
                   At Self-ie, we envision a world where everyone has the
                   opportunity to reach their full potential. We believe in the
                   power of continuous learning and personal growth to transform
