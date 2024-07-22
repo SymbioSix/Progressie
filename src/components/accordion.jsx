@@ -35,7 +35,7 @@ const AccordionItem = ({ title, desc }) => {
           height: 1,
           marginLeft: "auto",
           marginRight: "auto",
-          width: "90%",
+          width: "95%",
         }}
       />
       {isOpen && (
