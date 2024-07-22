@@ -1,3 +1,4 @@
+/* Section Team */
 @media only screen and (max-width: 450px) {
     .bg-team  {
         top: 60% !important;
@@ -29,7 +30,7 @@
 }
 
 
-
+/* Section Visi */
 @media only screen and (max-width: 580px) {
     .bg-visi  {
         top: 60% !important;
