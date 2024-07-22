@@ -31,7 +31,7 @@ const Accordion = ({ items }) => {
   return (
     <div className="flex flex-col w-full h-auto gap-5">
       {items.map((item, index) => (
-        <AccordionItem key={index} title={item.title} content={item.desc} />
+        <AccordionItem key={index} title={item.title} desc={item.desc} />
       ))}
     </div>
   );
