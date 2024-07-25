@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import CardService from "../components/cardService";
 import CardTopic from "../components/cardTopic";
-import heroImage from "../assets/images/home-hero.png";
+import heroImage from "../assets/images/process.png";
 
 
 export default function HomePage() {
