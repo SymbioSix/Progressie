@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 
 
-const InputComponent = ({ type, placeholder, icon, onToggle }) => {
+const InputComponent = ({ type, placeholder, icon, value, onChange, onToggle }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleToggle = () => {
@@ -12,11 +12,13 @@ const InputComponent = ({ type, placeholder, icon, onToggle }) => {
   };
 
   return (
-    <div className="flex items-center w-full gap-3 py-2 mb-4 text-base text-black border-b border-gray-300">
+    <div className="flex items-center w-full gap-3 py-2 mb-4 text-base text-black border-black border-b-[3px]">
       <Icon icon={icon} width="24" height="24" style={{ color: 'black' }} className="w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]" />
       <input
         type={type === 'password' && showPassword ? 'text' : type}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className="flex-1 text-sm text-black outline-none sm:text-base"
         required
       />
@@ -34,10 +36,12 @@ const InputComponent = ({ type, placeholder, icon, onToggle }) => {
 };
 
 InputComponent.propTypes = {
-    type: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    icon: PropTypes.node.isRequired,
-    onToggle: PropTypes.node.isRequired,
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onToggle: PropTypes.func,
 };
 
 export default InputComponent;

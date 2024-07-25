@@ -1,20 +1,18 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const ButtonComponent = ({ text, link, className }) => {
+const ButtonComponent = ({ type, text, onClick, className }) => {
   return (
-    <Link to={link}>
-      <button className={className}>
-        {text}
-      </button>
-    </Link>
+    <button type={type} className={className} onClick={onClick}>
+      {text}
+    </button>
   );
 };
 
 ButtonComponent.propTypes = {
+  type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired
+  onClick: PropTypes.func,
+  className: PropTypes.string.isRequired,
 };
 
 export default ButtonComponent;
