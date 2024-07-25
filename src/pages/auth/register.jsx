@@ -1,10 +1,34 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
 import Button from "../../components/buttonAuth";
 import overlayAuth from "../../assets/images/process.png";
 
-
 export default function RegisterPage() {
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !username || !password || !confirmPass) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    if (password !== confirmPass) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    navigate('/dashboard');
+  };
+
   return (
     <>
       <Navbar />
@@ -19,7 +43,8 @@ export default function RegisterPage() {
                 <h3 className="my-8 text-3xl font-bold text-center sm:text-4xl">
                   SignUp
                 </h3>
-                <div className="flex flex-col w-full h-full gap-3 mb-8">
+                {error && <p className="mb-2 text-sm font-bold text-red-500">{error}</p>}
+                <form onSubmit={handleSubmit} className="flex flex-col w-full h-full gap-3 mb-8">
                   <div className="w-full h-auto email">
                     <label htmlFor="email" className="font-bold">
                       Email
@@ -28,6 +53,8 @@ export default function RegisterPage() {
                       name="email"
                       type="email"
                       placeholder="Type your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       icon="mdi:email"
                     />
                   </div>
@@ -39,6 +66,8 @@ export default function RegisterPage() {
                       name="username"
                       type="text"
                       placeholder="Type your username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       icon="mdi:account"
                     />
                   </div>
@@ -50,6 +79,8 @@ export default function RegisterPage() {
                       name="password"
                       type="password"
                       placeholder="Type your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       icon="fluent:key-32-filled"
                     />
                   </div>
@@ -61,13 +92,16 @@ export default function RegisterPage() {
                       name="confirmPass"
                       type="password"
                       placeholder="Confirm your password"
+                      value={confirmPass}
+                      onChange={(e) => setConfirmPass(e.target.value)}
                       icon="fluent:key-32-filled"
                     />
                   </div>
                   <div className="flex flex-col items-center justify-center w-full gap-2">
                     <Button
+                      type="submit"
                       text="SignUp"
-                      link="/dashboard"
+                      onClick={handleSubmit}
                       className="w-fit px-12 shadow-[0px_4px_5px_0px_rgba(0,0,0,0.3)] text-black py-2 text-base sm:text-2xl font-bold bg-[#F7EBE6] rounded-full"
                     />
                     <p className="text-sm sm:text-base">
@@ -78,7 +112,7 @@ export default function RegisterPage() {
                       account?
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
             <div className="hidden lg:flex w-full lg:w-[65%] lg:max-w-[65%] pl-5 h-full justify-end items-center">

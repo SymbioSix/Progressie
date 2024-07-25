@@ -1,9 +1,29 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
 import Button from "../../components/buttonAuth";
 import overlayAuth from "../../assets/images/process.png";
 
+
 export default function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!username || !password) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    navigate('/dashboard');
+  };
+  
   return (
     <>
       <Navbar />
@@ -18,7 +38,8 @@ export default function LoginPage() {
                 <h3 className="my-10 text-3xl font-bold text-center sm:text-4xl">
                   Login
                 </h3>
-                <div className="flex flex-col w-full h-full gap-8 mb-10">
+                {error && <p className="mb-4 text-sm font-bold text-red-500">{error}</p>}
+                <form onSubmit={handleSubmit} className="flex flex-col w-full h-full gap-8 mb-10">
                   <div className="w-full h-auto username">
                     <label htmlFor="username" className="font-bold">
                       Username
@@ -26,6 +47,8 @@ export default function LoginPage() {
                     <Input
                       name="username"
                       type="text"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       placeholder="Type your username"
                       icon="mdi:account"
                     />
@@ -44,11 +67,13 @@ export default function LoginPage() {
                     <Input
                       name="password"
                       type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Type your password"
                       icon="fluent:key-32-filled"
                     />
                     <p className="text-sm sm:text-base">
-                      <a href="/forgot" className="text-[#062EFF]">
+                      <a href="/forgot-confirm-email" className="text-[#062EFF]">
                         forgot
                       </a>{" "}
                       password?
@@ -56,8 +81,9 @@ export default function LoginPage() {
                   </div>
                   <div className="flex flex-col items-center justify-center w-full gap-2">
                     <Button
+                      type="submit"
                       text="Login"
-                      link="/dashboard"
+                      onClick={handleSubmit}
                       className="w-fit px-12 shadow-[0px_4px_5px_0px_rgba(0,0,0,0.3)] text-black py-2 text-base sm:text-2xl font-bold bg-[#F7EBE6] rounded-full"
                     />
                     <p className="text-sm sm:text-base">
@@ -68,7 +94,7 @@ export default function LoginPage() {
                       account
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
             <div className="hidden lg:flex w-full lg:w-[65%] lg:max-w-[65%] pl-5 h-full justify-end items-center">
