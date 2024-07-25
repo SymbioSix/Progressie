@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainPage from './App.jsx';
 import AboutPage from './pages/about/index.jsx';
 import FaqPage from './pages/faq/index.jsx';
+import LoginPage from './pages/auth/login.jsx';
+import RegisterPage from './pages/auth/register.jsx';
 import NotFoundPage from './pages/404.jsx';
 import './index.css';
 
@@ -26,6 +28,18 @@ const routes = createBrowserRouter([
     path: "/faq",
     element: (
       <FaqPage />
+    )
+  },
+  {
+    path: "/login",
+    element: (
+      <LoginPage />
+    )
+  },
+  {
+    path: "/register",
+    element: (
+      <RegisterPage />
     )
   },
   {

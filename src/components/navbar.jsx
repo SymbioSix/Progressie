@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../assets/images/logo-selfie.svg";
 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isBackgroundChange, setIsBackgroundChange] =
-    useState("bg-transparent");
+  const [isBackgroundChange, setIsBackgroundChange] = useState("bg-transparent");
   const [isColorToggle, setIsColorToggle] = useState("text-white");
   const location = useLocation();
 
@@ -25,6 +25,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
 
   const locationNavMenu = (path) => {
     if (
