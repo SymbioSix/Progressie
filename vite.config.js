@@ -10,7 +10,7 @@ export default defineConfig({
   //   }
   // },
   build: {
-    outDir: "<PATH TO OUT DIR ATAU HASIL BUILD>"
+    outDir: "./dist"
   },
   base:"/Progressie"
-})
+});
