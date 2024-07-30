@@ -9,6 +9,7 @@ import LoginPage from './pages/auth/login.jsx';
 import RegisterPage from './pages/auth/register.jsx';
 import ForgotBasePage from './pages/auth/forgotBase.jsx';
 import ForgotMainPage from './pages/auth/forgotMain.jsx';
+import DashboardPage from './pages/dashboard/dashboardMain.jsx';
 import NotFoundPage from './pages/404.jsx';
 import './index.css';
 
@@ -54,6 +55,12 @@ const routes = createBrowserRouter([
     path: "/forgot-confirm-password",
     element: (
       <ForgotMainPage />
+    )
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <DashboardPage />
     )
   },
   {
