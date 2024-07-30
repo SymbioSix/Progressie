@@ -60,6 +60,13 @@ const Navbar = () => {
           </div>
           <div className="items-center hidden space-x-8 md:flex">
             <a
+              href="/dashboard"
+              className={`text-lg px-5 transition-all ${locationNavMenu(
+                "/dashboard")}`}
+            >
+              Dashboard
+            </a>
+            <a
               href="/"
               className={`text-lg px-5 transition-all ${locationNavMenu("/")}`}
             >
