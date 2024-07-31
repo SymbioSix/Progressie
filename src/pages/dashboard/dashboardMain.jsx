@@ -1,10 +1,13 @@
 import Sidebar from './dashboardComponents/sidebar'
+import Leaderboard from './dashboardComponents/leaderboardComp'
+import Navbar from './dashboardComponents/header'
 
 export default function DashboardPage() {
     return (
         <div className='flex flex-row '>
         <Sidebar />
-        <div className='ml-16 flex align-center'>          
+        <Navbar />
+        <div className='m-20 flex align-center'>       
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ullamcorper felis libero, 
             vel hendrerit felis ullamcorper a. Pellentesque ornare vel est eget faucibus. Proin sit 
             amet ex vel ipsum hendrerit efficitur id nec lacus. Morbi nulla sem, molestie non lectus ac,
@@ -14,6 +17,7 @@ export default function DashboardPage() {
                est velit congue urna, ut ullamcorper neque leo a sem. Nunc pretium nibh in congue dignissim. Sed eget ipsum ac ex
                 vestibulum ultrices non id tellus. Ut molestie augue eu vulputate hendrerit.
         </div>
+        {/* <Leaderboard /> */}
         </div>
     )
 
