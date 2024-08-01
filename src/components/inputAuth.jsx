@@ -41,7 +41,7 @@ InputComponent.propTypes = {
   icon: PropTypes.node.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  onToggle: PropTypes.func,
+  onToggle: PropTypes.func.isRequired,
 };
 
 export default InputComponent;

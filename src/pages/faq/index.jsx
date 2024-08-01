@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import Accordion from "../../components/accordion";
-import "./faq.css";
+import "../../assets/css/faq.css";
 
 const dataGeneral = [
   {
@@ -98,22 +100,22 @@ export default function FaqPage() {
           <div className="container w-full h-full">
             <ul className="flex flex-wrap items-center justify-between w-full h-full">
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <a href="#general">General</a>
+                <Link to="#general">General</Link>
               </li>
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <a href="#course">Courses</a>
+                <Link to="#course">Courses</Link>
               </li>
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <a href="#forum">Forum</a>
+                <Link to="#forum">Forum</Link>
               </li>
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <a href="#rank">Rank</a>
+                <Link to="#rank">Rank</Link>
               </li>
               <li
                 id="last-item-menu"
                 className="pt-3 text-base font-black text-center sm:text-xl md:text-4xl sm:pt-0"
               >
-                <a href="#technical">Technical Support</a>
+                <Link to="#technical">Technical Support</Link>
               </li>
             </ul>
           </div>

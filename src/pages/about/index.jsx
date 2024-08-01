@@ -2,7 +2,7 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import aboutTeamImage from "../../assets/images/about-team.png";
 import aboutVisiImage from "../../assets/images/about-visi.png";
-import "./about.css";
+import "../../assets/css/about.css";
 
 
 export default function AboutPage() {

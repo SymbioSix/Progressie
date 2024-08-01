@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
 import Button from "../../components/buttonAuth";
@@ -14,6 +14,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+    // this built in function will reset the default behavior of the form
     e.preventDefault();
 
     if (!email || !username || !password || !confirmPass) {
@@ -106,9 +107,9 @@ export default function RegisterPage() {
                     />
                     <p className="text-sm sm:text-base">
                       Or{" "}
-                      <a href="/login" className="text-[#062EFF]">
+                      <Link to="/login" className="text-[#062EFF]">
                         have
-                      </a>{" "}
+                      </Link>{" "}
                       account?
                     </p>
                   </div>
