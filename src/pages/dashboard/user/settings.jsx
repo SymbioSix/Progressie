@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 
 import Sidebar from "../components/sidebar";
 import Navbar from "../components/header";
-import logoAccount from "../../../../assets/images/profile.jpg";
+import logoAccount from "../../../assets/images/profile.jpg"
 
 
 export default function SettingsPage() {

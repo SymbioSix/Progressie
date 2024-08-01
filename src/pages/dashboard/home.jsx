@@ -1,6 +1,6 @@
-import Sidebar from "./dashboardComponents/sidebar";
+import Sidebar from "./components/sidebar";
 // import Leaderboard from "./dashboardComponents/leaderboardComp";
-import Navbar from "./dashboardComponents/header";
+import Navbar from "./components/header";
 
 export default function DashboardPage() {
   return (
