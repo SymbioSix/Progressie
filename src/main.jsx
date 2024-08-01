@@ -9,11 +9,11 @@ import LoginPage from './pages/auth/login.jsx';
 import RegisterPage from './pages/auth/register.jsx';
 import ForgotBasePage from './pages/auth/forgotBase.jsx';
 import ForgotMainPage from './pages/auth/forgotMain.jsx';
-import DashboardPage from './pages/dashboard/dashboardMain.jsx';
-import CoursePage from './pages/dashboard/dashboardPages/course.jsx';
-import AchievementPage from './pages/dashboard/dashboardPages/achievement.jsx';
-import ToDoListPage from './pages/dashboard/dashboardPages/todolist.jsx';
-import DashboardSettingsPage from './pages/dashboard/dashboardPages/settings/index.jsx';
+import DashboardPage from './pages/dashboard/home.jsx';
+import DashboardCoursePage from './pages/dashboard/user/course.jsx';
+import DashboardAchievementPage from './pages/dashboard/user/achievement.jsx';
+import DashboardToDoListPage from './pages/dashboard/user/todolist.jsx';
+import DashboardSettingsPage from './pages/dashboard/user/settings.jsx';
 import NotFoundPage from './pages/404.jsx';
 import './index.css';
 
@@ -70,19 +70,19 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/course",
     element: (
-      <CoursePage />
+      <DashboardCoursePage />
     )
   },
   {
     path: "/dashboard/achievement",
     element: (
-      <AchievementPage />
+      <DashboardAchievementPage />
     )
   },
   {
     path: "/dashboard/to-do-list",
     element: (
-      <ToDoListPage />
+      <DashboardToDoListPage />
     )
   },
   {

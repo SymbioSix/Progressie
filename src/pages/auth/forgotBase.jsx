@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
 import Button from "../../components/buttonAuth";
@@ -39,9 +41,9 @@ export default function ForgotPage() {
                     />
                     <p className="text-sm sm:text-base">
                       Or{" "}
-                      <a href="/register" className="text-[#062EFF]">
+                      <Link to="/register" className="text-[#062EFF]">
                         create
-                      </a>{" "}
+                      </Link>{" "}
                       account
                     </p>
                   </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import logo from "../assets/images/logo-selfie.svg";
+import { useLocation, Link } from "react-router-dom";
 
+import logo from "../assets/images/logo-selfie.svg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,14 +25,9 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
 
   const locationNavMenu = (path) => {
-    if (
-      location.pathname === path &&
-      (path === "/about" || path === "/faq") &&
-      window.scrollY < 500
-    ) {
+    if (location.pathname === path &&(path === "/about" || path === "/faq") && window.scrollY < 500 ) {
       return "bg-white text-black";
     }
 
@@ -59,35 +54,36 @@ const Navbar = () => {
             </a>
           </div>
           <div className="items-center hidden space-x-8 md:flex">
-            <a
-              href="/dashboard"
+            <Link
+              to="/dashboard"
               className={`text-lg px-5 transition-all ${locationNavMenu(
-                "/dashboard")}`}
+                "/dashboard"
+              )}`}
             >
               Dashboard
-            </a>
-            <a
-              href="/"
+            </Link>
+            <Link
+              to="/"
               className={`text-lg px-5 transition-all ${locationNavMenu("/")}`}
             >
               Home
-            </a>
-            <a
-              href="/about"
+            </Link>
+            <Link
+              to="/about"
               className={`text-lg px-5 transition-all ${locationNavMenu(
                 "/about"
               )}`}
             >
               About Us
-            </a>
-            <a
-              href="/faq"
+            </Link>
+            <Link
+              to="/faq"
               className={`text-lg px-5 transition-all ${locationNavMenu(
                 "/faq"
               )}`}
             >
               FAQ
-            </a>
+            </Link>
           </div>
           <div id="hamburger" className="md:hidden">
             <button
@@ -116,28 +112,28 @@ const Navbar = () => {
             className="flex flex-col space-y-2 md:hidden"
             style={{ transitionProperty: "opacity, transform" }}
           >
-            <a
-              href="/"
+            <Link
+              to="/"
               className={`text-lg px-3 transition-all ${locationNavMenu("/")}`}
             >
               Home
-            </a>
-            <a
-              href="/about"
+            </Link>
+            <Link
+              to="/about"
               className={`text-lg px-3 transition-all ${locationNavMenu(
                 "/about"
               )}`}
             >
               About Us
-            </a>
-            <a
-              href="/faq"
+            </Link>
+            <Link
+              to="/faq"
               className={`text-lg px-3 transition-all ${locationNavMenu(
                 "/faq"
               )}`}
             >
               FAQ
-            </a>
+            </Link>
           </div>
         )}
       </div>
