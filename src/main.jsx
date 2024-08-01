@@ -13,6 +13,7 @@ import DashboardPage from './pages/dashboard/dashboardMain.jsx';
 import CoursePage from './pages/dashboard/dashboardPages/course.jsx';
 import AchievementPage from './pages/dashboard/dashboardPages/achievement.jsx';
 import ToDoListPage from './pages/dashboard/dashboardPages/todolist.jsx';
+import DashboardSettingsPage from './pages/dashboard/dashboardPages/settings/index.jsx';
 import NotFoundPage from './pages/404.jsx';
 import './index.css';
 
@@ -82,6 +83,12 @@ const routes = createBrowserRouter([
     path: "/dashboard/to-do-list",
     element: (
       <ToDoListPage />
+    )
+  },
+  {
+    path: "/dashboard/settings",
+    element: (
+      <DashboardSettingsPage />
     )
   },
   {
