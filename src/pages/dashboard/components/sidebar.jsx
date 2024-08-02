@@ -4,7 +4,6 @@ import { useLocation, Link } from "react-router-dom";
 import logo from "../../../assets/images/logo-selfie.svg";
 import shortlogo from "../../../assets/images/logo-s.png";
 
-
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();

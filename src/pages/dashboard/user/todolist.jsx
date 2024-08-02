@@ -1,7 +1,12 @@
-import Sidebar from '../components/sidebar'
+import Sidebar from "../components/sidebar";
+import Navbar from "../components/header";
 
-export default function ToDoListPage(){
-    return(
-        <Sidebar />
-    )
+
+export default function ToDoListPage() {
+  return (
+    <div className="flex flex-row">
+      <Navbar />
+      <Sidebar />
+    </div>
+  );
 }
