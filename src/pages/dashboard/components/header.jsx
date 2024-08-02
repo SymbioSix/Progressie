@@ -48,7 +48,7 @@ const Header = () => {
                     <li className="w-full flex items-center justify-start px-3 py-2 rounded-[5px]">
                     <Icon icon="pajamas:settings" width="26" height="26"  style={{color: "#000000"}} />
                       <Link
-                        href="/dashboard-settings"
+                        to="/dashboard/settings"
                         className="block w-full text-center"
                       >
                         Settings

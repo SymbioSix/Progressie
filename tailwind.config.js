@@ -13,6 +13,9 @@ export default {
           '2xl': '2rem',
         },
       },
+      backgroundImage: {
+        'profile-bg': "url('/src/pages/dashboard/assets/icon/banner-profile.png')",
+      },
     },
   },
   plugins: [],
