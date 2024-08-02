@@ -14,7 +14,8 @@ export default {
         },
       },
       backgroundImage: {
-        'profile-bg': "url('/src/pages/dashboard/assets/icon/banner-profile.png')",
+        'profile-bg': "url('/src/pages/dashboard/assets/images/banner-profile.png')",
+        'pasir-icon': "url('/src/pages/dashboard/assets/icon/icon-pasir-selfie.png')",
       },
     },
   },
