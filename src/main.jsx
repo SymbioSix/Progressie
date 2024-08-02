@@ -15,7 +15,9 @@ import ForgotMainPage from './pages/auth/forgotMain.jsx';
 import DashboardPage from './pages/dashboard/home.jsx';
 import DashboardCoursePage from './pages/dashboard/user/course.jsx';
 import DashboardAchievementPage from './pages/dashboard/user/achievement.jsx';
-import DashboardToDoListPage from './pages/dashboard/user/todolist.jsx';
+import DashboardToDoListPage from './pages/dashboard/user/todolist/index.jsx';
+import DashboardToDoListCoursePage from './pages/dashboard/user/todolist/todo-Course.jsx';
+import DashboardToDoListTargetPage from './pages/dashboard/user/todolist/todo-Target.jsx';
 import DashboardSettingsPage from './pages/dashboard/user/settings.jsx';
 import DashboarProfilePage from './pages/dashboard/user/profile.jsx';
 import NotFoundPage from './pages/404.jsx';
@@ -87,6 +89,18 @@ const routes = createBrowserRouter([
     path: "/dashboard/to-do-list",
     element: (
       <DashboardToDoListPage />
+    )
+  },
+  {
+    path: "/dashboard/to-do-list",
+    element: (
+      <DashboardToDoListCoursePage />
+    )
+  },
+  {
+    path: "/dashboard/to-do-list",
+    element: (
+      <DashboardToDoListTargetPage />
     )
   },
   {
