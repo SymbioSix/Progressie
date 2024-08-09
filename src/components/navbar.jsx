@@ -2,19 +2,23 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import logo from "../assets/images/logo-selfie.svg";
+import logo2 from "../assets/images/logo-selfie2.svg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBackgroundChange, setIsBackgroundChange] = useState("bg-transparent");
   const [isColorToggle, setIsColorToggle] = useState("text-white");
+  const [isLogo, setIsLogo] = useState(logo); // Perbaikan Bug Navbar
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 500) {
+      if (window.scrollY > 20) {
+        setIsLogo(logo2) // Perbaikan Bug Navbar
         setIsBackgroundChange("bg-black");
         setIsColorToggle("text-white");
       } else {
+        setIsLogo(logo) // Perbaikan Bug Navbar
         setIsBackgroundChange("bg-transparent");
         setIsColorToggle("text-black");
       }
@@ -27,17 +31,20 @@ const Navbar = () => {
   }, []);
 
   const locationNavMenu = (path) => {
-    if (location.pathname === path &&(path === "/about" || path === "/faq") && window.scrollY < 500 ) {
+    if (location.pathname === path && (path === "/about" || path === "/faq") && window.scrollY < 20) {
       return "bg-white text-black";
     }
 
     if (location.pathname === path) {
-      if (window.scrollY > 500) {
+      if (window.scrollY > 20) {
         return "bg-white text-black";
       } else {
         return "bg-black text-white";
       }
-    } else {
+    } else if (window.scrollY < 20) {
+      return "text-black"
+    }
+    else {
       return "text-white";
     }
   };
@@ -50,7 +57,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-[15px]">
           <div className="text-2xl font-bold">
             <a href="/">
-              <img src={logo} alt="Logo Selfie" />
+              <img src={isLogo} alt="Logo Selfie" />
             </a>
           </div>
           <div className="items-center hidden space-x-8 md:flex">
