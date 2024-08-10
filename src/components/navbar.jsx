@@ -7,89 +7,89 @@ import logo2 from "../assets/images/logo-selfie2.svg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isBackgroundChange, setIsBackgroundChange] = useState("bg-transparent");
+  const [isBackgroundChange, setIsBackgroundChange] =useState("bg-transparent");
   const [isColorToggle, setIsColorToggle] = useState("text-white");
-  const [isLogo, setIsLogo] = useState(logo); 
+  const [isLogo, setIsLogo] = useState(logo);
   const location = useLocation();
 
   useEffect(() => {
     const path = location.pathname;
 
-    // Set the logo based on the current path when the component mounts or the route changes
     if (path === "/") {
       setIsLogo(logo);
-
     } else {
       setIsLogo(logo2);
-
     }
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
       if (scrollY > 20) {
         setIsLogo(logo2);
-        setIsBackgroundChange( "bg-black");
+        setIsBackgroundChange("bg-black");
+        setIsColorToggle("!text-white");
       } else if (path === "/") {
         setIsLogo(logo);
         setIsBackgroundChange("bg-transparent");
+        setIsColorToggle("!text-black");
       } else {
-        // Default condition for other paths
         setIsLogo(scrollY > 20 ? logo2 : logo2);
         setIsBackgroundChange(scrollY > 20 ? "bg-black" : "bg-transparent");
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);const locationNavMenu = (path) => {
+  }, [location.pathname]);
+
+  const locationNavMenu = (path) => {
     const isRoot = path === "/";
     const isSpecialPath = path === "/about" || path === "/faq";
     const scrollCondition = window.scrollY > 20;
-  
+
     if (location.pathname === path) {
       if (isRoot) {
         return scrollCondition ? "bg-white text-black" : "bg-black text-white";
       }
-  
+
       if (isSpecialPath) {
         return "bg-white text-black";
       }
-  
-      // Default styles for other paths
+
       return scrollCondition ? "bg-white text-white" : "bg-black text-white";
     }
-  
-    // Additional condition to set text color to white for specific paths
-    if (['/about', '/faq'].includes(location.pathname)) {
+
+    if (["/about", "/faq"].includes(location.pathname)) {
       return "text-white";
-    }else if (['/'].includes(location.pathname)&& !scrollCondition){
+    } else if (["/"].includes(location.pathname) && !scrollCondition) {
       return "text-black";
-    }else if (['/'].includes(location.pathname)&& scrollCondition){
+    } else if (["/"].includes(location.pathname) && scrollCondition) {
       return "text-white";
     }
-   
   };
-  
-  
 
   return (
     <nav
       className={`fixed inset-x-0 top-0 z-50 pb-2 md:pb-0 transition-colors duration-300 ${isBackgroundChange}`}
     >
-       <div className="container mx-auto">
-        <div className="flex justify-between items-center py-2">
+      <div className="container mx-auto">
+        <div className="flex items-center justify-between py-2">
           <div className="text-xl font-bold">
-            <a href="/">
-            <img src={isLogo} alt="Logo Selfie" style={{ width: '60px', height: 'auto' }} />
-            </a>
+            <Link to="/">
+              <img
+                src={isLogo}
+                alt="Logo Selfie"
+                className="w-[60px] h-auto"
+              />
+            </Link>
           </div>
           <div className="items-center hidden space-x-6 md:flex">
             <Link
               to="/dashboard"
-              className={`text-sm px-4 transition-all ${locationNavMenu("/dashboard")}`}
+              className={`text-sm px-4 transition-all ${locationNavMenu(
+                "/dashboard"
+              )}`}
             >
               Dashboard
             </Link>
@@ -101,13 +101,17 @@ const Navbar = () => {
             </Link>
             <Link
               to="/about"
-              className={`text-sm px-4 transition-all ${locationNavMenu("/about")}`}
+              className={`text-sm px-4 transition-all ${locationNavMenu(
+                "/about"
+              )}`}
             >
               About Us
             </Link>
             <Link
               to="/faq"
-              className={`text-sm px-4 transition-all ${locationNavMenu("/faq")}`}
+              className={`text-sm px-4 transition-all ${locationNavMenu(
+                "/faq"
+              )}`}
             >
               FAQ
             </Link>
@@ -147,13 +151,17 @@ const Navbar = () => {
             </Link>
             <Link
               to="/about"
-              className={`text-sm px-3 transition-all ${locationNavMenu("/about")}`}
+              className={`text-sm px-3 transition-all ${locationNavMenu(
+                "/about"
+              )}`}
             >
               About Us
             </Link>
             <Link
               to="/faq"
-              className={`text-sm px-3 transition-all ${locationNavMenu("/faq")}`}
+              className={`text-sm px-3 transition-all ${locationNavMenu(
+                "/faq"
+              )}`}
             >
               FAQ
             </Link>
