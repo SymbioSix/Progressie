@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import Accordion from "../../components/accordion";
@@ -100,22 +98,22 @@ export default function FaqPage() {
           <div className="container w-full h-full">
             <ul className="flex flex-wrap items-center justify-between w-full h-full">
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <Link to="#general">General</Link>
+                <a href="#general">General</a>
               </li>
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <Link to="#course">Courses</Link>
+                <a href="#course">Courses</a>
               </li>
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <Link to="#forum">Forum</Link>
+                <a href="#forum">Forum</a>
               </li>
               <li className="text-base font-black sm:text-xl md:text-4xl">
-                <Link to="#rank">Rank</Link>
+                <a href="#rank">Rank</a>
               </li>
               <li
                 id="last-item-menu"
                 className="pt-3 text-base font-black text-center sm:text-xl md:text-4xl sm:pt-0"
               >
-                <Link to="#technical">Technical Support</Link>
+                <a href="#technical">Technical Support</a>
               </li>
             </ul>
           </div>
