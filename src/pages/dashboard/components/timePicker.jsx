@@ -36,10 +36,10 @@ const TimePicker = () => {
     <div className="flex flex-col w-full gap-2 pl-4 mt-5">
       <label className="text-lg font-bold">Time</label>
       <div
-        className="relative flex items-center justify-between w-full px-5 py-2 border-2 rounded-lg cursor-pointer"
+        className="relative flex items-center justify-between w-full px-5 py-5 border-2 rounded-lg cursor-pointer"
         onClick={toggleDropdown}
       >
-        <span>{selectedTime || "Select time"}</span>
+        <span className="text-md">{selectedTime || "Select time"}</span>
         {isOpen ? (
           <img src={IconUp} className="w-5 h-5" />
         ) : (
@@ -48,7 +48,7 @@ const TimePicker = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute left-[95px] right-0 z-10 flex items-center justify-around w-[685px] p-3 mt-20 bg-white border-2 rounded-lg shadow-lg animate-dropdown">
+        <div className="absolute left-[95px] right-0 z-10 flex items-center justify-around w-[705px] px-3 py-5 mt-[105px] bg-white border-2 rounded-lg shadow-lg animate-dropdown">
           <div className="flex flex-col items-center">
             <button
               className="font-bold text-md"

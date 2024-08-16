@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,11 @@ import Navbar from "../../components/header";
 
 
 export default function ToDoListPage() {
+  // handle scroll to top page was loaded ( hardcoded :) )
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);    
+
   return (
     <div className="flex flex-row">
       <Navbar />
@@ -80,12 +86,16 @@ export default function ToDoListPage() {
           </div>
           <div className="flex justify-between w-full h-auto">
             <div className="flex flex-col h-auto w-[52%] gap-5 rounded-2xl">
-              <button className="w-full h-auto p-8 border-2 border-black rounded-2xl">
-                <Link to="/dashboard/todolist/target" className="text-4xl font-bold text-left">Make a New Target</Link>
-              </button>
-              <button className="w-full h-auto p-8 border-2 border-black rounded-2xl">
-                <Link to="/dashboard/todolist/course" className="text-4xl font-bold">Add Schedule SubCourse</Link>
-              </button>
+              <Link to="/dashboard/todolist/target">
+                <button className="w-full h-auto p-8 text-4xl font-bold text-center border-2 border-black rounded-2xl">
+                  Make a New Target
+                </button>
+              </Link>
+              <Link to="/dashboard/todolist/course">
+                <button className="w-full h-auto p-8 text-4xl font-bold text-center border-2 border-black rounded-2xl">
+                  Add Schedule SubCourse
+                </button>
+              </Link>
             </div>
             <div className="relative flex flex-col gap-5 h-auto w-[35%] max-w-[35%] bg-[#F7EBE6] rounded-2xl">
               <span className="pr-[200px] text-4xl font-bold p-5">Enthusiasm towards becoming a better person</span>
