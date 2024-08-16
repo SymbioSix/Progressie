@@ -1,6 +1,6 @@
 import Sidebar from '../components/sidebar'
 
-export default function CoursePage(){
+export default function AchievementPage(){
     return(
         <Sidebar />
     )

@@ -73,7 +73,9 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex flex-col gap-2 bg-[#F4F4F4] p-5 items-center rounded-2xl">
                   <div className="flex items-center w-full h-auto gap-2">
-                    <span className="text-lg font-bold">Job/School/University</span>
+                    <span className="text-lg font-bold">
+                      Job/School/University
+                    </span>
                     <Icon
                       icon="ph:pencil-light"
                       width="20"

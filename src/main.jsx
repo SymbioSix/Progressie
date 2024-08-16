@@ -13,13 +13,13 @@ import ForgotMainPage from './pages/auth/forgotMain.jsx';
 
 // Dashboard User Page
 import DashboardPage from './pages/dashboard/home.jsx';
-import DashboardCoursePage from './pages/dashboard/user/course.jsx';
-import DashboardAchievementPage from './pages/dashboard/user/achievement.jsx';
-import DashboardToDoListPage from './pages/dashboard/user/todolist/index.jsx';
-import DashboardToDoListCoursePage from './pages/dashboard/user/todolist/todo-Course.jsx';
-import DashboardToDoListTargetPage from './pages/dashboard/user/todolist/todo-Target.jsx';
-import DashboardSettingsPage from './pages/dashboard/user/settings.jsx';
-import DashboarProfilePage from './pages/dashboard/user/profile.jsx';
+import DashboardCoursePage from './pages/dashboard/pages/course/index.jsx';
+import DashboardAchievementPage from './pages/dashboard/pages/achievement.jsx';
+import DashboardToDoListPage from './pages/dashboard/pages/todolist/index.jsx';
+import DashboardToDoListCoursePage from './pages/dashboard/pages/todolist/todo-Course.jsx';
+import DashboardToDoListTargetPage from './pages/dashboard/pages/todolist/todo-Target.jsx';
+import DashboardSettingsPage from './pages/dashboard/pages/setting.jsx';
+import DashboarProfilePage from './pages/dashboard/pages/profile.jsx';
 import NotFoundPage from './pages/404.jsx';
 import './index.css';
 
@@ -86,19 +86,19 @@ const routes = createBrowserRouter([
     )
   },
   {
-    path: "/dashboard/to-do-list",
+    path: "/dashboard/todolist",
     element: (
       <DashboardToDoListPage />
     )
   },
   {
-    path: "/dashboard/to-do-list",
+    path: "/dashboard/todolist/course",
     element: (
       <DashboardToDoListCoursePage />
     )
   },
   {
-    path: "/dashboard/to-do-list",
+    path: "/dashboard/todolist/target",
     element: (
       <DashboardToDoListTargetPage />
     )
