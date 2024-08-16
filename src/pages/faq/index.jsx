@@ -1,7 +1,7 @@
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import Accordion from "../../components/accordion";
-import "./faq.css";
+import "../../assets/css/faq.css";
 
 const dataGeneral = [
   {

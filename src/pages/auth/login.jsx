@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
@@ -73,9 +73,9 @@ export default function LoginPage() {
                       icon="fluent:key-32-filled"
                     />
                     <p className="text-sm sm:text-base">
-                      <a href="/forgot-confirm-email" className="text-[#062EFF]">
+                      <Link to="/forgot-confirm-email" className="text-[#062EFF]">
                         forgot
-                      </a>{" "}
+                      </Link>{" "}
                       password?
                     </p>
                   </div>
@@ -88,9 +88,9 @@ export default function LoginPage() {
                     />
                     <p className="text-sm sm:text-base">
                       Or{" "}
-                      <a href="/register" className="text-[#062EFF]">
+                      <Link to="/register" className="text-[#062EFF]">
                         create
-                      </a>{" "}
+                      </Link>{" "}
                       account
                     </p>
                   </div>

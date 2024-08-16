@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
-import logo from "../assets/images/logo-selfie.svg";
+
+import logo from "../assets/images/logo-selfie2.svg";
 
 
 const Footer = () => {
