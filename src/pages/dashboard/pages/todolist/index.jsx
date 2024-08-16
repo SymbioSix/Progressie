@@ -5,12 +5,26 @@ import { Link } from "react-router-dom";
 import Sidebar from "../../components/sidebar";
 import Navbar from "../../components/header";
 
+const dataTitle = [
+  {
+    title: "Title dari todolist target 1",
+  },
+  {
+    title: "Title dari todolist target 2",
+  }, 
+  {
+    title: "Title dari todolist target 3",
+  },
+  {
+    title: "Title dari todolist target 4",
+  }
+]
 
 export default function ToDoListPage() {
   // handle scroll to top page was loaded ( hardcoded :) )
   useEffect(() => {
     window.scrollTo(0, 0);
-}, []);    
+  }, []);  
 
   return (
     <div className="flex flex-row">
@@ -78,10 +92,14 @@ export default function ToDoListPage() {
             </div>
             <div className="flex flex-col gap-5 h-auto w-[45%] shadow-[0_0px_5px_0px_rgba(0,0,0,0.5)] rounded-2xl p-5">
               <h1 className="text-2xl font-bold text-center">Title Todolist Target</h1>
-              <p className="text-2xl font-bold">Title Target</p>
-              <p className="text-2xl font-bold">Title Target</p>
-              <p className="text-2xl font-bold">Title Target</p>
-              <p className="text-2xl font-bold">Title Target</p>
+              {dataTitle.map((data, index) => (
+                <p 
+                  key={index} 
+                  className={`text-2xl font-bold ${index % 2 === 0 ? 'bg-gray-300 py-2 px-3 rounded-lg' : 'bg-none'}`}
+                >
+                  {data.title}
+                </p>
+              ))}
             </div>
           </div>
           <div className="flex justify-between w-full h-auto">
