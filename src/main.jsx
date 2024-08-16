@@ -86,19 +86,19 @@ const routes = createBrowserRouter([
     )
   },
   {
-    path: "/dashboard/to-do-list",
+    path: "/dashboard/todolist",
     element: (
       <DashboardToDoListPage />
     )
   },
   {
-    path: "/dashboard/to-do-list",
+    path: "/dashboard/todolist/course",
     element: (
       <DashboardToDoListCoursePage />
     )
   },
   {
-    path: "/dashboard/to-do-list",
+    path: "/dashboard/todolist/target",
     element: (
       <DashboardToDoListTargetPage />
     )

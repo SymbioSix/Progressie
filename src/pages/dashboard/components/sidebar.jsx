@@ -4,6 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import logo from "../../../assets/images/logo-selfie.svg";
 import shortlogo from "../../../assets/images/logo-s.png";
 
+
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -144,7 +145,7 @@ const Sidebar = () => {
             </li>
             <li
               className={`hover:bg-gray-100 w-full ${locationSideMenu(
-                "/dashboard/to-do-list"
+                "/dashboard/todolist"
               )}`}
             >
               <Link
