@@ -21,7 +21,6 @@ export const getTodolistById = async (id) => {
 
 export const createTodolist = async (data) => {
   try {
-    console.log("Sending data to API:", data);
     const response = await api.post("/todolist", data);
     return response.data;
   } catch (error) {

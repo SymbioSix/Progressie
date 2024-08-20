@@ -15,22 +15,46 @@ const TimePicker = ({ setTime }) => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleScroll = (value, type) => {
-    let assignTime = parseInt(value);
-    if (type === "hours") { 
-      if (assignTime > 12) assignTime = 1;
-      if (assignTime < 1) assignTime = 12;
-      setHours(assignTime < 10 ? `0${assignTime}` : `${assignTime}`);
-      setPeriod(assignTime >= 12 ? "PM" : "AM");
-    } else if (type === "minutes" || type === "seconds") {
-      if (assignTime > 59) assignTime = 0;
-      if (assignTime < 0) assignTime = 59;
-      type === "minutes"
-        ? setMinutes(assignTime < 10 ? `0${assignTime}` : `${assignTime}`)
-        : setSeconds(
-            assignTime < 10 ? `0${assignTime}` : `${assignTime}`
-          );
+    if (type === "hours") {
+      setHours((prevHours) => {
+        let newHours = parseInt(prevHours) + value;
+
+        if (newHours > 12) {
+          newHours = 1;
+        } else if (newHours < 1) {
+          newHours = 12;
+        }
+
+        if (
+          (prevHours === "11" && newHours === 12) ||
+          (prevHours === "12" && newHours === 11)
+        ) {
+          setPeriod((prevPeriod) => (prevPeriod === "AM" ? "PM" : "AM"));
+        }
+
+        const updatedHours = newHours < 10 ? `0${newHours}` : `${newHours}`;
+        setTime(`${updatedHours}:${minutes}:${seconds} ${period}`);
+        return updatedHours;
+      });
+    } else if (type === "minutes") {
+      setMinutes((prevMinutes) => {
+        let newMinutes = parseInt(prevMinutes) + value;
+        if (newMinutes > 59) newMinutes = 0;
+        if (newMinutes < 0) newMinutes = 59;
+        const updatedMinutes = newMinutes < 10 ? `0${newMinutes}` : `${newMinutes}`;
+        setTime(`${hours}:${updatedMinutes}:${seconds} ${period}`);
+        return updatedMinutes;
+      });
+    } else if (type === "seconds") {
+      setSeconds((prevSeconds) => {
+        let newSeconds = parseInt(prevSeconds) + value;
+        if (newSeconds > 59) newSeconds = 0;
+        if (newSeconds < 0) newSeconds = 59;
+        const updatedSeconds = newSeconds < 10 ? `0${newSeconds}` : `${newSeconds}`;
+        setTime(`${hours}:${minutes}:${updatedSeconds} ${period}`);
+        return updatedSeconds;
+      });
     }
-    setTime(`${hours}:${minutes}:${seconds} ${period}`);
   };
 
   return (
@@ -54,7 +78,7 @@ const TimePicker = ({ setTime }) => {
             <button
               type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(hours - 1, "hours")}
+              onClick={() => handleScroll(1, "hours")}
             >
               ▲
             </button>
@@ -62,7 +86,7 @@ const TimePicker = ({ setTime }) => {
             <button
               type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(hours + 1, "hours")}
+              onClick={() => handleScroll(-1, "hours")}
             >
               ▼
             </button>
@@ -71,7 +95,7 @@ const TimePicker = ({ setTime }) => {
             <button
               type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(minutes - 1, "minutes")}
+              onClick={() => handleScroll(1, "minutes")}
             >
               ▲
             </button>
@@ -79,7 +103,7 @@ const TimePicker = ({ setTime }) => {
             <button
               type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(minutes + 1, "minutes")}
+              onClick={() => handleScroll(-1, "minutes")}
             >
               ▼
             </button>
@@ -88,7 +112,7 @@ const TimePicker = ({ setTime }) => {
             <button
               type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(seconds - 1, "seconds")}
+              onClick={() => handleScroll(1, "seconds")}
             >
               ▲
             </button>
@@ -96,7 +120,7 @@ const TimePicker = ({ setTime }) => {
             <button
               type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(seconds + 1, "seconds")}
+              onClick={() => handleScroll(-1, "seconds")}
             >
               ▼
             </button>
@@ -113,3 +137,4 @@ TimePicker.propTypes = {
 };
 
 export default TimePicker;
+  
