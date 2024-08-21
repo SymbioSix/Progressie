@@ -149,7 +149,7 @@ const Sidebar = () => {
               )}`}
             >
               <Link
-                to="/dashboard/to-do-list"
+                to="/dashboard/todolist"
                 className={`text-center flex flex-row items-center ms-5 py-3 justify-start text-gray-500 hover:text-black w-full`}
               >
                 <svg

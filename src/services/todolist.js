@@ -1,18 +1,27 @@
 import api from "../utils/request";
 
 
-export const getHome = async () => {
+export const getTodolist = async () => {
   try {
-    const response = await api.get("/home");
+    const response = await api.get("/todolist");
     return response.data;
   } catch (error) {
     validateError(error);
   }
 };
 
-export const getHomeById = async (id) => {
+export const getTodolistById = async (id) => {
   try {
-    const response = await api.get(`/home/${id}`);
+    const response = await api.get(`/todolist/${id}`);
+    return response.data;
+  } catch (error) {
+    validateError(error);
+  }
+};
+
+export const createTodolist = async (data) => {
+  try {
+    const response = await api.post("/todolist", data);
     return response.data;
   } catch (error) {
     validateError(error);

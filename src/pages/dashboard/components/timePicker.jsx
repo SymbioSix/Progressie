@@ -1,12 +1,12 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import IconUp from "../assets/icon/up.svg";
 import "../assets/css/todolist.css";
 
 
-const TimePicker = () => {
+const TimePicker = ({ setTime }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedTime, setSelectedTime] = useState("");
   const [hours, setHours] = useState("12");
   const [minutes, setMinutes] = useState("00");
   const [seconds, setSeconds] = useState("00");
@@ -15,20 +15,45 @@ const TimePicker = () => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleScroll = (value, type) => {
-    let updatedValue = parseInt(value);
     if (type === "hours") {
-      if (updatedValue > 12) updatedValue = 1;
-      if (updatedValue < 1) updatedValue = 12;
-      setHours(updatedValue < 10 ? `0${updatedValue}` : `${updatedValue}`);
-      setPeriod(updatedValue >= 12 ? "PM" : "AM");
-    } else if (type === "minutes" || type === "seconds") {
-      if (updatedValue > 59) updatedValue = 0;
-      if (updatedValue < 0) updatedValue = 59;
-      type === "minutes"
-        ? setMinutes(updatedValue < 10 ? `0${updatedValue}` : `${updatedValue}`)
-        : setSeconds(
-            updatedValue < 10 ? `0${updatedValue}` : `${updatedValue}`
-          );
+      setHours((prevHours) => {
+        let newHours = parseInt(prevHours) + value;
+
+        if (newHours > 12) {
+          newHours = 1;
+        } else if (newHours < 1) {
+          newHours = 12;
+        }
+
+        if (
+          (prevHours === "11" && newHours === 12) ||
+          (prevHours === "12" && newHours === 11)
+        ) {
+          setPeriod((prevPeriod) => (prevPeriod === "AM" ? "PM" : "AM"));
+        }
+
+        const updatedHours = newHours < 10 ? `0${newHours}` : `${newHours}`;
+        setTime(`${updatedHours}:${minutes}:${seconds} ${period}`);
+        return updatedHours;
+      });
+    } else if (type === "minutes") {
+      setMinutes((prevMinutes) => {
+        let newMinutes = parseInt(prevMinutes) + value;
+        if (newMinutes > 59) newMinutes = 0;
+        if (newMinutes < 0) newMinutes = 59;
+        const updatedMinutes = newMinutes < 10 ? `0${newMinutes}` : `${newMinutes}`;
+        setTime(`${hours}:${updatedMinutes}:${seconds} ${period}`);
+        return updatedMinutes;
+      });
+    } else if (type === "seconds") {
+      setSeconds((prevSeconds) => {
+        let newSeconds = parseInt(prevSeconds) + value;
+        if (newSeconds > 59) newSeconds = 0;
+        if (newSeconds < 0) newSeconds = 59;
+        const updatedSeconds = newSeconds < 10 ? `0${newSeconds}` : `${newSeconds}`;
+        setTime(`${hours}:${minutes}:${updatedSeconds} ${period}`);
+        return updatedSeconds;
+      });
     }
   };
 
@@ -39,7 +64,7 @@ const TimePicker = () => {
         className="relative flex items-center justify-between w-full px-5 py-5 border-2 rounded-lg cursor-pointer"
         onClick={toggleDropdown}
       >
-        <span className="text-md">{selectedTime || "Select time"}</span>
+        <span className="text-md">Select Time</span>
         {isOpen ? (
           <img src={IconUp} className="w-5 h-5" />
         ) : (
@@ -51,45 +76,51 @@ const TimePicker = () => {
         <div className="absolute left-[95px] right-0 z-10 flex items-center justify-around w-[705px] px-3 py-5 mt-[105px] bg-white border-2 rounded-lg shadow-lg animate-dropdown">
           <div className="flex flex-col items-center">
             <button
+              type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(hours - 1, "hours")}
+              onClick={() => handleScroll(1, "hours")}
             >
               ▲
             </button>
             <span className="text-md">{hours}</span>
             <button
+              type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(hours + 1, "hours")}
+              onClick={() => handleScroll(-1, "hours")}
             >
               ▼
             </button>
           </div>
           <div className="flex flex-col items-center">
             <button
+              type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(minutes - 1, "minutes")}
+              onClick={() => handleScroll(1, "minutes")}
             >
               ▲
             </button>
             <span className="text-md">{minutes}</span>
             <button
+              type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(minutes + 1, "minutes")}
+              onClick={() => handleScroll(-1, "minutes")}
             >
               ▼
             </button>
           </div>
           <div className="flex flex-col items-center">
             <button
+              type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(seconds - 1, "seconds")}
+              onClick={() => handleScroll(1, "seconds")}
             >
               ▲
             </button>
             <span className="text-md">{seconds}</span>
             <button
+              type="button"
               className="font-bold text-md"
-              onClick={() => handleScroll(seconds + 1, "seconds")}
+              onClick={() => handleScroll(-1, "seconds")}
             >
               ▼
             </button>
@@ -101,4 +132,9 @@ const TimePicker = () => {
   );
 };
 
+TimePicker.propTypes = {
+  setTime: PropTypes.func.isRequired,
+};
+
 export default TimePicker;
+  
