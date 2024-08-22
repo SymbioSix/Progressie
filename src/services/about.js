@@ -3,7 +3,7 @@ import api from "../utils/request";
 
 export const getHome = async () => {
   try {
-    const response = await api.get("/home");
+    const response = await api.get("/aboutus");
     return response.data;
   } catch (error) {
     validateError(error);
@@ -12,7 +12,7 @@ export const getHome = async () => {
 
 export const getHomeById = async (id) => {
   try {
-    const response = await api.get(`/home/${id}`);
+    const response = await api.get(`/aboutus/${id}`);
     return response.data;
   } catch (error) {
     validateError(error);

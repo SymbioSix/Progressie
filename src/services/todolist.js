@@ -3,25 +3,7 @@ import api from "../utils/request";
 
 export const getTodolist = async () => {
   try {
-    const response = await api.get("/todolist");
-    return response.data;
-  } catch (error) {
-    validateError(error);
-  }
-};
-
-export const getTodolistById = async (id) => {
-  try {
-    const response = await api.get(`/todolist/${id}`);
-    return response.data;
-  } catch (error) {
-    validateError(error);
-  }
-};
-
-export const createTodolist = async (data) => {
-  try {
-    const response = await api.post("/todolist", data);
+    const response = await api.get("/todos");
     return response.data;
   } catch (error) {
     validateError(error);
