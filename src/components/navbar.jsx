@@ -85,14 +85,14 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="items-center hidden space-x-6 md:flex">
-            <Link
+            {/* <Link
               to="/dashboard"
               className={`text-sm px-4 transition-all ${locationNavMenu(
                 "/dashboard"
               )}`}
             >
               Dashboard
-            </Link>
+            </Link> */}
             <Link
               to="/"
               className={`text-sm px-4 transition-all ${locationNavMenu("/")}`}
