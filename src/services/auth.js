@@ -1,5 +1,6 @@
 import api from "../../utils/request";
 
+
 export const signUpSuperadmin = async (data) => {
   try {
     const response = await api.post("/v1/auth/signup-super", data);
