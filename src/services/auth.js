@@ -1,4 +1,4 @@
-import api from "../../utils/request";
+import api from "../utils/request";
 
 
 export const signUpSuperadmin = async (data) => {
@@ -25,6 +25,7 @@ export const signUpUser = async (data) => {
     return response.data;
   } catch (error) {
     validateError(error);
+    throw error;
   }
 };
 
