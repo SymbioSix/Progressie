@@ -12,7 +12,7 @@ export default function SettingsPage() {
         <Navbar />
         <Sidebar />
         <div className="flex items-center w-full h-screen mt-24 ml-20">
-          <div className="flex flex-col items-center gap-10 mt-4 mr-8 ml-5 p-5 bg-[#F7EBE6] w-full h-full rounded-2xl">
+          <div className="flex flex-col items-center gap-10 mt-4 mr-8 ml-5 p-5 bg-[#F7EBE6] w-full h-auto rounded-2xl">
             <div className="flex items-center w-full gap-5">
               <img
                 src={logoAccount}
