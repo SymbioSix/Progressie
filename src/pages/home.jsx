@@ -12,20 +12,16 @@ export default function HomePage() {
   const handleLoginClick = () => {
     const token = localStorage.getItem('authToken');
     if (token) {
-      // Cek apakah token masih valid
       const tokenExpiration = JSON.parse(atob(token.split('.')[1])).exp;
       const currentTime = Math.floor(Date.now() / 1000);
   
       if (tokenExpiration > currentTime) {
-        // Token masih valid, redirect ke dashboard
         navigation("/dashboard");
       } else {
-        // Token kadaluarsa, hapus token dan redirect ke login
         localStorage.removeItem('authToken');
         navigation("/login");
       }
     } else {
-      // Tidak ada token, redirect ke login
       navigation("/login");
     }
   };
