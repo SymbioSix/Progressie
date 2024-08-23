@@ -1,41 +1,48 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-import { signIn } from '../../services/auth'; 
+import { signIn } from "../../services/auth";
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
-import Button from "../../components/buttonAuth";
+import Button from "../../components/button";
 import overlayAuth from "../../assets/images/process.png";
 
 
 export default function LoginPage() {
+  const navigation = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
     }
-
+  
     try {
       const data = { email, password };
       const response = await signIn(data);
+
+      // rememberMe ? localStorage.setItem('authToken', response.token) : sessionStorage.setItem('authToken', response.token);
       
-      localStorage.setItem('authToken', response.token);
-      navigate('/dashboard');
+      if (rememberMe) {
+        localStorage.setItem('authToken', response.token);
+      } else {
+        sessionStorage.setItem('authToken', response.token);
+      }
+  
+      navigation('/dashboard');
     } catch (error) {
-      setError(
-        'Login failed, please try again'
-      );
+      setError('Login failed, please try again');
       console.error('Signin error : ', error);
     }
-  };
-  
+  };  
+
   return (
     <>
       <Navbar />
@@ -50,8 +57,13 @@ export default function LoginPage() {
                 <h3 className="my-10 text-3xl font-bold text-center sm:text-4xl">
                   Login
                 </h3>
-                {error && <p className="mb-4 text-sm font-bold text-red-500">{error}</p>}
-                <form onSubmit={handleSubmit} className="flex flex-col w-full h-full gap-8 mb-10">
+                {error && (
+                  <p className="mb-4 text-sm font-bold text-red-500">{error}</p>
+                )}
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col w-full h-full gap-8 mb-10"
+                >
                   <div className="w-full h-auto username">
                     <label htmlFor="email" className="font-bold">
                       Email
@@ -67,6 +79,8 @@ export default function LoginPage() {
                     <label className="flex items-center gap-2 text-sm sm:text-base">
                       <input
                         type="checkbox"
+                        checked={rememberMe}
+                        onChange={() => setRememberMe(!rememberMe)}
                         className="accent-black w-[15px] h-[15px] sm:w-[20px] sm:h-[20px]"
                       />
                       remember me
@@ -85,7 +99,10 @@ export default function LoginPage() {
                       icon="fluent:key-32-filled"
                     />
                     <p className="text-sm sm:text-base">
-                      <Link to="/forgot-confirm-email" className="text-[#062EFF]">
+                      <Link
+                        to="/forgot-confirm-email"
+                        className="text-[#062EFF]"
+                      >
                         forgot
                       </Link>{" "}
                       password?

@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { signUpUser } from "../../services/auth";
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
-import Button from "../../components/buttonAuth";
+import Button from "../../components/button";
 import overlayAuth from "../../assets/images/process.png";
 
 
