@@ -25,12 +25,14 @@ const Sidebar = () => {
       >
         <div className="relative flex flex-col items-center">
           <div className="p-4 pb-0 mb-1.5 pt-4 flex justify-between items-center w-full">
-            <img
-              src={logo}
-              className={`transition-all duration-1000 w-16 
-                            ${open ? "block" : "hidden"} `}
-              alt="Logo Selfie"
-            />
+            <Link to="/dashboard">
+              <img
+                src={logo}
+                className={`transition-all duration-1000 w-16 
+                              ${open ? "block" : "hidden"} `}
+                alt="Logo Selfie"
+              />
+            </Link>
           </div>
           <ul className="flex flex-col w-full space-y-1">
             <span
