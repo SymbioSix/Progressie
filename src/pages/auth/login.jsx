@@ -9,7 +9,6 @@ import overlayAuth from "../../assets/images/process.png";
 
 
 export default function LoginPage() {
-  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -24,7 +23,6 @@ export default function LoginPage() {
     }
 
     try {
-      // const data = { username, password };
       const data = { email, password };
       const response = await signIn(data);
       
@@ -55,21 +53,14 @@ export default function LoginPage() {
                 {error && <p className="mb-4 text-sm font-bold text-red-500">{error}</p>}
                 <form onSubmit={handleSubmit} className="flex flex-col w-full h-full gap-8 mb-10">
                   <div className="w-full h-auto username">
-                    {/* <label htmlFor="username" className="font-bold"> */}
                     <label htmlFor="email" className="font-bold">
-                      {/* Username */}
                       Emailx
                     </label>
                     <Input
-                      // name="username"
                       name="email"
-                      // type="text"
                       type="email"
-                      // value={username}
                       value={email}
-                      // onChange={(e) => setUsername(e.target.value)}
                       onChange={(e) => setEmail(e.target.value)}
-                      // placeholder="Type your username"
                       placeholder="Type your email"
                       icon="mdi:account"
                     />
