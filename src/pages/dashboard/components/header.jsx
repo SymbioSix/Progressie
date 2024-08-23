@@ -1,14 +1,29 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
+
+import { signOut } from "../../../services/auth";
 
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isDropdown, setIsDropdown] = useState(false);
   
   const toggleDropdown = () => {
     setIsDropdown(!isDropdown);
   };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+
+      localStorage.removeItem("authToken");
+      navigate("/");
+    } catch (error) {
+      alert("Signout failed, please try again");
+      console.error("Error : ", error);
+    }
+  }
 
   return (
     <nav className="fixed inset-x-0 top-0 z-40 px-5 py-1 bg-gray-400">
@@ -58,7 +73,7 @@ const Header = () => {
                 <div className="absolute top-[65px] right-[-2px] w-[180px] py-[10px] px-[5px] bg-white border border-gray-200 rounded-md shadow-md font-bold">
                   <ul className="space-y-2">
                     <li className="w-full flex items-center justify-start px-3 py-2 rounded-[5px] hover:bg-gray-300">
-                    <Icon icon="pajamas:settings" width="26" height="26"  style={{color: "#000000"}} />
+                      <Icon icon="pajamas:settings" width="26" height="26"  style={{color: "#000000"}} />
                       <Link
                         to="/dashboard/settings"
                         className="block w-full text-center"
@@ -66,8 +81,8 @@ const Header = () => {
                         Settings
                       </Link>
                     </li>
-                    <li className="w-full flex items-center justify-start px-3 py-2 rounded-[5px] hover:bg-gray-300">
-                    <Icon icon="majesticons:logout-line" width="28" height="28"  style={{color: "#000000"}}/>
+                    <li className="w-full flex items-center justify-start px-3 py-2 rounded-[5px] hover:bg-gray-300" onClick={handleSignOut}>
+                      <Icon icon="majesticons:logout-line" width="28" height="28"  style={{color: "#000000"}}/>
                       <Link
                         to=""
                         className="block w-full text-center"

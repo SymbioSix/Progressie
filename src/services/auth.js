@@ -38,6 +38,15 @@ export const signIn = async (data) => {
   }
 };
 
+export const signOut = async (data) => {
+  try {
+    const response = await api.post("/v1/auth/signout", data);
+    return response.data;
+  } catch (error) {
+    validateError(error);
+  }
+};
+
 const validateError = (error) => {
   if (error.response) {
     console.error(
