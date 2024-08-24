@@ -1,8 +1,12 @@
 import Sidebar from "./components/sidebar";
 // import Leaderboard from "./dashboardComponents/leaderboardComp";
 import Navbar from "./components/header";
+import useTokenExpirationCheck from "../../hooks/useTokenExpire";
+
 
 export default function DashboardPage() {
+  useTokenExpirationCheck();
+
   return (
     <div className="flex flex-row">
       <Sidebar />
