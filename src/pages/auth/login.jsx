@@ -14,7 +14,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,21 +26,24 @@ export default function LoginPage() {
     try {
       const data = { email, password };
       const response = await signIn(data);
-
-      // rememberMe ? localStorage.setItem('authToken', response.token) : sessionStorage.setItem('authToken', response.token);
-      
-      if (rememberMe) {
-        localStorage.setItem('authToken', response.token);
-      } else {
-        sessionStorage.setItem('authToken', response.token);
-      }
+      const token = response?.result?.access_token;
   
-      navigation('/dashboard');
+      if (token) {
+        if (rememberMe) {
+          localStorage.setItem('authToken', token);
+        } else {
+          sessionStorage.setItem('authToken', token);
+        }
+  
+        navigation('/dashboard');
+      } else {
+        setError('Login failed, token not found');
+      }
     } catch (error) {
       setError('Login failed, please try again');
-      console.error('Signin error : ', error);
     }
-  };  
+  };
+  
 
   return (
     <>

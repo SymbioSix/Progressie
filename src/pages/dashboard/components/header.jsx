@@ -18,10 +18,11 @@ const Header = () => {
       await signOut();
 
       localStorage.removeItem("authToken");
+      sessionStorage.removeItem("authToken");
+      
       navigate("/");
     } catch (error) {
       alert("Signout failed, please try again");
-      console.error("Error : ", error);
     }
   }
 
