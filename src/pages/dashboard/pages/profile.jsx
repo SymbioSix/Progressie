@@ -1,10 +1,13 @@
 import { Icon } from "@iconify/react";
 
+import useTokenExpirationCheck from "../../../hooks/useTokenExpire";
 import Sidebar from "../components/sidebar";
 import Navbar from "../components/header";
-// import logoAccount from "../../../assets/images/profile.jpg";
+
 
 export default function ProfilePage() {
+  useTokenExpirationCheck();
+  
   return (
     <>
       <div className="flex flex-row">
