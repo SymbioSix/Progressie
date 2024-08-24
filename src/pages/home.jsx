@@ -9,9 +9,31 @@ import heroImage from "../assets/images/process.png";
 
 export default function HomePage() {
   const navigation = useNavigate();
+  
   const handleLoginClick = () => {
-    navigation("/login");
-  };
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      try {
+        const tokenPayload = token.split('.')[1];
+        const decodedPayload = JSON.parse(atob(tokenPayload));
+        const tokenExp = decodedPayload.exp;
+        const currentTime = Math.floor(Date.now() / 1000);
+  
+        if (tokenExp > currentTime) {
+          navigation("/dashboard");
+        } else {
+          localStorage.removeItem('authToken');
+          navigation("/login");
+        }
+      } catch (error) {
+        localStorage.removeItem('authToken');
+        navigation("/login");
+      }
+    } else {
+      navigation("/login");
+    }
+  };  
+  
 
   return (
     <>
