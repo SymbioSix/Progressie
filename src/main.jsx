@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import ProtectPage from "./components/protectRoute.jsx";
 
 // Landing Page
 import MainPage from './App.jsx';
@@ -70,49 +72,65 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <DashboardPage />
+      <ProtectPage>
+        <DashboardPage />
+      </ProtectPage>
     )
   },
   {
     path: "/dashboard/course",
     element: (
-      <DashboardCoursePage />
+      <ProtectPage>
+        <DashboardCoursePage />
+      </ProtectPage>
     )
   },
   {
     path: "/dashboard/achievement",
     element: (
-      <DashboardAchievementPage />
+      <ProtectPage>
+        <DashboardAchievementPage />
+      </ProtectPage>
     )
   },
   {
     path: "/dashboard/todolist",
     element: (
-      <DashboardToDoListPage />
+      <ProtectPage>
+        <DashboardToDoListPage />
+      </ProtectPage>
     )
   },
   {
     path: "/dashboard/todolist/course",
     element: (
-      <DashboardToDoListCoursePage />
+      <ProtectPage>
+        <DashboardToDoListCoursePage />
+      </ProtectPage>
     )
   },
   {
     path: "/dashboard/todolist/target",
     element: (
-      <DashboardToDoListTargetPage />
+      <ProtectPage>
+        <DashboardToDoListTargetPage />
+      </ProtectPage>
     )
   },
   {
     path: "/dashboard/settings",
     element: (
-      <DashboardSettingsPage />
+      <ProtectPage>
+        <DashboardSettingsPage />
+      </ProtectPage>
     )
   },
   {
     path: "/dashboard/profile",
     element: (
-      <DashboarProfilePage />
+      <ProtectPage>
+        <DashboarProfilePage />
+      </ProtectPage>
     )
   },
   {

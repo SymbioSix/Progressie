@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
+import useTokenExpirationCheck from "../../../../hooks/useTokenExpire";
 import Sidebar from "../../components/sidebar";
 import Navbar from "../../components/header";
 
@@ -22,6 +23,8 @@ const dataTitle = [
 ];
 
 export default function ToDoListPage() {
+  useTokenExpirationCheck();
+  
   // handle scroll to top page was loaded ( hardcoded :) )
   useEffect(() => {
     window.scrollTo(0, 0);
