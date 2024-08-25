@@ -1,5 +1,4 @@
 import Sidebar from "./components/sidebar";
-// import Leaderboard from "./dashboardComponents/leaderboardComp";
 import Navbar from "./components/header";
 import useTokenExpirationCheck from "../../hooks/useTokenExpire";
 
@@ -8,24 +7,45 @@ export default function DashboardPage() {
   useTokenExpirationCheck();
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row h-screen">
       <Sidebar />
-      <Navbar />
-      <div className="flex mt-24 ml-20 align-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        ullamcorper felis libero, vel hendrerit felis ullamcorper a.
-        Pellentesque ornare vel est eget faucibus. Proin sit amet ex vel ipsum
-        hendrerit efficitur id nec lacus. Morbi nulla sem, molestie non lectus
-        ac, volutpat mattis felis. Fusce sed mollis ex, at vulputate magna.
-        Praesent et ante ut arcu vestibulum faucibus sit amet non eros. Ut enim
-        tellus, euismod vel lorem et, euismod aliquet massa. Curabitur iaculis
-        risus nec libero malesuada, et suscipit massa dictum. Maecenas finibus,
-        diam cursus ornare scelerisque, est velit congue urna, ut ullamcorper
-        neque leo a sem. Nunc pretium nibh in congue dignissim. Sed eget ipsum
-        ac ex vestibulum ultrices non id tellus. Ut molestie augue eu vulputate
-        hendrerit.
+      <div className="flex flex-col w-full">
+        <Navbar />
+        <div className="flex flex-col lg:flex-row gap-4 p-4 mt-20"> {/* Increased top margin */}
+          {/* First Row */}
+          <div className="flex flex-row flex-wrap gap-4 w-full">
+            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
+              <p className="text-center">Total Achievement</p>
+            </div>
+            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
+              <p className="text-center">Recent Activity</p>
+            </div>
+            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
+              <p className="text-center">Leaderboard</p>
+            </div>
+          </div>
+
+          {/* Second Row */}
+          <div className="flex flex-row flex-wrap gap-4 w-full mt-4">
+            <div className="w-full lg:w-2/3 bg-gray-100 border border-gray-300 p-4">
+              <p className="text-center">Activity Chart</p>
+            </div>
+            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
+              <p className="text-center">Progress to Rank-Up</p>
+            </div>
+          </div>
+
+          {/* Third Row */}
+          <div className="flex flex-row flex-wrap gap-4 w-full mt-4">
+            <div className="w-full lg:w-2/3 bg-gray-100 border border-gray-300 p-4">
+              <p className="text-center">To-Do List</p>
+            </div>
+            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
+              <p className="text-center">Newest Article</p>
+            </div>
+          </div>
+        </div>
       </div>
-      {/* <Leaderboard /> */}
     </div>
   );
 }
