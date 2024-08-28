@@ -1,4 +1,4 @@
-import Sidebar from '../dashboardComponents/sidebar'
+import Sidebar from '../../components/sidebar'
 
 export default function AchievementPage(){
     return(

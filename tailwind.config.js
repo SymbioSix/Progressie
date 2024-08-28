@@ -13,6 +13,12 @@ export default {
           '2xl': '2rem',
         },
       },
+      backgroundImage: {
+        'profile-bg': "url('/src/pages/dashboard/assets/images/banner-profile.png')",
+        'pasir-icon': "url('/src/pages/dashboard/assets/icon/icon-pasir-selfie.png')",
+        'car-banner': "url('/src/pages/dashboard/assets/images/car-placeir.png')",
+        'click-banner': "url('/src/pages/dashboard/assets/images/click-placeir.png')"
+      },
     },
   },
   plugins: [],

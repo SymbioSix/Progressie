@@ -1,32 +1,43 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+import { signUpUser } from "../../services/auth";
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
-import Button from "../../components/buttonAuth";
+import Button from "../../components/button";
 import overlayAuth from "../../assets/images/process.png";
 
+
 export default function RegisterPage() {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPass, setConfirmPass] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    // this built in function will reset the default behavior of the form
     e.preventDefault();
 
     if (!email || !username || !password || !confirmPass) {
-      setError('Please fill in all fields');
+      setError("Please fill in all fields");
       return;
     }
 
     if (password !== confirmPass) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
-    navigate('/dashboard');
+    try {
+      await signUpUser({ email, username, password });
+      navigate("/login");
+    } catch (error) {
+      setError("Registration failed, please try again");
+      console.error("Signup error : ", error);
+    }
+    
   };
 
   return (
@@ -43,8 +54,14 @@ export default function RegisterPage() {
                 <h3 className="my-8 text-3xl font-bold text-center sm:text-4xl">
                   SignUp
                 </h3>
-                {error && <p className="mb-2 text-sm font-bold text-red-500">{error}</p>}
-                <form onSubmit={handleSubmit} className="flex flex-col w-full h-full gap-3 mb-8">
+                {error && (
+                  <p className="mb-2 text-sm font-bold text-red-500">{error}</p>
+                )}
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col w-full h-full gap-3 mb-8"
+                >
+                  {/* Input fields */}
                   <div className="w-full h-auto email">
                     <label htmlFor="email" className="font-bold">
                       Email
@@ -106,9 +123,9 @@ export default function RegisterPage() {
                     />
                     <p className="text-sm sm:text-base">
                       Or{" "}
-                      <a href="/login" className="text-[#062EFF]">
+                      <Link to="/login" className="text-[#062EFF]">
                         have
-                      </a>{" "}
+                      </Link>{" "}
                       account?
                     </p>
                   </div>

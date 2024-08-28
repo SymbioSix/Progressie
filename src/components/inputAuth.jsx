@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 
 
+// eslint-disable-next-line react/prop-types
 const InputComponent = ({ type, placeholder, icon, value, onChange, onToggle }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -40,8 +41,7 @@ InputComponent.propTypes = {
   placeholder: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onToggle: PropTypes.func,
+  onChange: PropTypes.func.isRequired
 };
 
 export default InputComponent;
