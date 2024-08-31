@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./assets/css/home.css";
 import ThreeDChart from './components/ThreeDChart';
 import Sidebar from "./components/sidebar";
@@ -6,6 +7,12 @@ import useTokenExpirationCheck from "../../hooks/useTokenExpire";
 
 export default function DashboardPage() {
   useTokenExpirationCheck();
+
+  const [resetTrigger, setResetTrigger] = useState(false);
+
+  const handleResetClick = () => {
+    setResetTrigger(prev => !prev); // Memicu reset kamera dengan toggle state
+  };
 
   return (
     <div className="dashboard-container">
@@ -18,10 +25,11 @@ export default function DashboardPage() {
             <div className="card card-one-third card-toppeng color-card">
               <p className="">Newest Article</p>
             </div>
-            <div className="card card-two-thirds color-card">
-              <p className="">Statistic</p>
-              <div className="card three-d-chart-container hs color-card-w">
-                <ThreeDChart />
+            <div className="card card-two-thirds color-card-w ">
+              <p className="">Daily progress</p>
+              <div className="card three-d-chart-container hs ">
+                <button onClick={handleResetClick} className="reset-button   ">Reset View</button>
+                <ThreeDChart resetTrigger={resetTrigger} />
               </div>
             </div>
             <div className="card card-one-third card-leaderboard card-bottong-left color-card">
