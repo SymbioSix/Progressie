@@ -5,7 +5,6 @@ import { signIn } from "../../services/auth";
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
 import Button from "../../components/button";
-import overlayAuth from "../../assets/images/process.png";
 
 
 export default function LoginPage() {
@@ -51,7 +50,7 @@ export default function LoginPage() {
       <main className="w-full h-screen max-h-screen bg-white">
         <section
           id="login"
-          className="w-full h-full bg-gradient-to-t from-[#979797] from-10% to-white to-90%"
+          className="w-full h-full bg-gradient-to-t from-[#979797] from-10% to-black to-90%"
         >
           <div className="container flex flex-wrap w-full h-full">
             <div className="w-full lg:w-[35%] lg:max-w-[35%] h-full flex justify-center items-center">
@@ -129,11 +128,6 @@ export default function LoginPage() {
               </div>
             </div>
             <div className="hidden lg:flex w-full lg:w-[65%] lg:max-w-[65%] pl-5 h-full justify-end items-center">
-              <img
-                src={overlayAuth}
-                alt="Overlay Process Selfie"
-                className="w-full h-full bg-center bg-cover"
-              />
             </div>
           </div>
         </section>

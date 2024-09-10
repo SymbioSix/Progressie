@@ -15,8 +15,8 @@ const Navbar = () => {
   useEffect(() => {
     const path = location.pathname;
 
-    if (path === "/") {
-      setIsLogo(logo);
+    if ((path === "/")||(path === "/login")) {
+      setIsLogo(logo2);
     } else {
       setIsLogo(logo2);
     }
@@ -28,12 +28,12 @@ const Navbar = () => {
         setIsBackgroundChange("bg-black");
         setIsColorToggle("!text-white");
       } else if (path === "/") {
-        setIsLogo(logo);
+        setIsLogo(logo2);
         setIsBackgroundChange("bg-transparent");
-        setIsColorToggle("!text-black");
+        setIsColorToggle("!text-white");
       } else {
         setIsLogo(scrollY > 20 ? logo2 : logo2);
-        setIsBackgroundChange(scrollY > 20 ? "bg-black" : "bg-transparent");
+        setIsBackgroundChange(scrollY > 20 ? "bg-white" : "bg-transparent");
       }
     };
 
@@ -50,7 +50,7 @@ const Navbar = () => {
 
     if (location.pathname === path) {
       if (isRoot) {
-        return scrollCondition ? "bg-white text-black" : "bg-black text-white";
+        return scrollCondition ? "bg-white text-black" : "bg-white text-black";
       }
 
       if (isSpecialPath) {
@@ -63,8 +63,8 @@ const Navbar = () => {
     if (["/about", "/faq"].includes(location.pathname)) {
       return "text-white";
     } else if (["/"].includes(location.pathname) && !scrollCondition) {
-      return "text-black";
-    } else if (["/"].includes(location.pathname) && scrollCondition) {
+      return "text-white";
+    } else if ((["/"].includes(location.pathname)) && scrollCondition) {
       return "text-white";
     }
   };

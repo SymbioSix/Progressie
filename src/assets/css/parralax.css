@@ -1,0 +1,50 @@
+/* Hero Section Background Text (fixed position) */
+.hero-background-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Keep the text behind moving elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Gambar Foreground yang bergerak dengan scrolling */
+  .parallax-image {
+    position: relative;
+    height: 100vh;
+
+    background-size: cover;
+    background-position: center;
+    z-index: 10; /* Gambar di depan tulisan */
+  }
+  
+  /* Services Section Parallax */
+  .parallax-service-section {
+    background-size: cover;
+    background-position: center;
+
+    background-repeat: no-repeat;
+  }
+  
+  /* Konten yang berada di atas gambar parallax */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+  
+  body.scrolled .hero-content {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  
+  /* Optional: Tambahkan animasi scroll jika diperlukan */
+  body.scrolled .parallax-section {
+    transform: translateY(-50px); /* Efek kecil saat scroll */
+  }
+  
