@@ -3,7 +3,6 @@ import ReactCardFlip from "react-card-flip";
 
 import dataCard from "../api/cardTopic";
 
-
 const Card = () => {
   const [isFlipped, setIsFlipped] = useState(
     Array(dataCard.length).fill(false)
@@ -16,7 +15,7 @@ const Card = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-between gap-10 md:gap-0 w-full h-auto md:h-[400px] lg:h-[500px] xl:h-[650px] pt-[40px] pb-[100px]">
+    <div className="flex flex-wrap justify-center gap-5 w-full h-auto md:h-[400px] lg:h-[500px] xl:h-[650px] pt-[40px] pb-[100px]">
       {dataCard.map((data, index) => {
         const alignmentClass =
           index === 0 || index === 2 ? "items-end" : "items-start";
@@ -44,7 +43,6 @@ const Card = () => {
                 <h3 className="px-3 py-1 text-2xl font-bold bg-white sm:text-base lg:py-2 lg:px-5 lg:text-3xl rounded-2xl w-fit">
                   {data.nameService}
                 </h3>
-                {/* Cheat style :) */}
                 <p className="text-xl font-bold text-transparent sm:text-2xl md:text-xs lg:text-base 2xl:text-2xl">
                   {data.description}
                 </p>

@@ -1,66 +1,89 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import CardService from "../components/cardService";
 import CardTopic from "../components/cardTopic";
-import heroImage from "../assets/images/process.png";
-
+import heroImagez from "../assets/images/star.jpg"; // Import gambar
+import heroImage from "../assets/images/paralax2.png"; // Import gambar
+import heroImage2 from "../assets/images/paralax3.png"; // Import gambar
+import "../assets/css/parralax.css"; // Import file CSS untuk parallax
 
 export default function HomePage() {
-  const navigation = useNavigate();
-  
+  const navigate = useNavigate();
+
   const handleLoginClick = () => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
     if (token) {
       try {
-        const tokenPayload = token.split('.')[1];
+        const tokenPayload = token.split(".")[1];
         const decodedPayload = JSON.parse(atob(tokenPayload));
         const tokenExp = decodedPayload.exp;
         const currentTime = Math.floor(Date.now() / 1000);
-  
+
         if (tokenExp > currentTime) {
-          navigation("/dashboard");
+          navigate("/dashboard");
         } else {
-          localStorage.removeItem('authToken');
-          navigation("/login");
+          localStorage.removeItem("authToken");
+          navigate("/login");
         }
       } catch (error) {
-        localStorage.removeItem('authToken');
-        navigation("/login");
+        localStorage.removeItem("authToken");
+        navigate("/login");
       }
     } else {
-      navigation("/login");
+      navigate("/login");
     }
-  };  
-  
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const body = document.body;
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > 100) {
+        body.classList.add("scrolled");
+      } else {
+        body.classList.remove("scrolled");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
       <Navbar />
       <main className="w-full h-auto">
+        {/* Hero Section */}
         <section
           id="hero"
-          className="w-full h-screen hero pt-[70px] sm:pt-[120px] md:pt-[100px] xl:pt-0 bg-gradient-to-t from-[#979797] from-10% to-white to-90%"
+          className="parallax-hero-section w-full h-screen pt-[70px] sm:pt-[120px] md:pt-[100px] xl:pt-0 bg-black"
+          style={{ backgroundImage: `url(${heroImagez})` }} // Gambar diatur melalui style inline
         >
-          <div className="container">
-            <div className="flex flex-wrap-reverse items-center justify-center w-full h-full">
-              <div className="flex flex-col w-[100%] sm:w-[35%] gap-2 sm:gap-5">
-                <h1 className="sm:text-lg text-center sm:text-left md:text-2xl lg:text-4xl font-black uppercase [text-shadow:_0_4px_4px_rgb(0_0_0_/_0.3)]">
-                  Develop a positive mindset here to become the best version of
-                  yourself
+          <div className="container h-full">
+            <div className="flex flex-col w-full justify-center items-center h-auto gap-2 sm:gap-5">
+              <div className="hero-content text-center">
+                <h1 className="sm:text-lg md:text-2xl lg:text-4xl text-white uppercase mt-56 px-5">
+                  Develop a positive mindset here to become the best version of yourself
                 </h1>
-                <p className="text-center uppercase sm:text-left sm:text-sm md:text-base">
-                  let`s get a positive mindset
+                <p className="text-white uppercase sm:text-sm md:text-base">
+                  Let’s get a positive mindset
                 </p>
                 <button
                   onClick={handleLoginClick}
-                  className="w-fit self-center font-bold px-10 rounded-full py-2 shadow-md bg-[#F7EBE6]"
+                  className="w-fit self-center font-bold px-10 rounded-full py-2 shadow-md bg-[#F7EBE6] mt-5 text-black"
                 >
                   Login
                 </button>
+                
               </div>
-              <div className="w-[100%] sm:w-[65%]">
+              <div className="w-1/2 sm:w-[65%] py-5">
                 <img
                   src={heroImage}
                   alt="Hero image Selfie"
@@ -70,20 +93,33 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Services Section with Parallax */}
         <section
           id="service"
-          className="w-full h-auto bg-gradient-to-t from-white from-60% to-[#979797] to-100%"
+          className="bg-gradient-to-t from-[#FFFFFF] from-70% to-black to-90%"
         >
-          <div className="flex items-center justify-center w-full h-auto pt-[150px] sm:pt-[300px] pb-[100px]">
+          <div className="w-full h-auto pt-[150px] sm:pt-[500px] pb-[100px]">
             <CardService />
           </div>
+          
         </section>
+
         <section
-          id="topic"
-          className="w-full h-auto bg-gradient-to-t from-[#F7EBE6] from-20% to-white to-100%"
-        >
-          <div className="container">
-            <h1 className="text-3xl font-bold text-center">Our Core Topics</h1>
+  id="topic"
+  className="w-full h-auto bg-gradient-to-t from-[#50C878] from-1% to-white to-5% flex items-center justify-center py-56"
+>
+  <div className="container flex flex-col sm:flex-row items-center justify-between">
+    <div className="w-1/2 sm:w-[65%] py-5 px-4 sm:px-8">
+      <img
+        src={heroImage2}
+        alt="Hero image Selfie"
+        className="object-contain"
+      />
+    </div>
+    <h1 className="text-3xl font-bold text-center sm:text-left  sm:py-0">
+      🎉 Exclusive Offer: Free for the First 100 Users! 🎉
+    </h1>
             <CardTopic />
           </div>
         </section>

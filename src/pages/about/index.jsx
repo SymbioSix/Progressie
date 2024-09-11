@@ -12,11 +12,11 @@ export default function AboutPage() {
       <main className="w-full h-auto">
         <section
           id="hero"
-          className="w-full h-[500px] bg-center bg-cover bg-[url('/src/assets/images/about-hero.png')]"
+          className="w-full h-[120px] bg-center bg-cover bg-[url('/src/assets/images/about-hero.png')]"
         >
           <div className="container h-full">
             <div className="flex items-center justify-center w-full h-full">
-              <p className="text-3xl sm:text-[70px] font-bold text-white">About Us</p>
+              <p className="text-3xl sm:text-[35px] font-bold text-white">About Us</p>
             </div>
           </div>
         </section>
