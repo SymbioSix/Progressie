@@ -1,0 +1,31 @@
+/* Gaya dasar tombol */
+.button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: 0.5rem 2.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #F7EBE6;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* Gaya saat tombol diklik */
+  .button:active {
+    background-color: #e0d0c5; /* Ganti dengan warna yang diinginkan saat tombol ditekan */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Efek bayangan saat tombol ditekan */
+    transform: scale(0.98); /* Efek mengecil saat ditekan */
+  }
+  
+  /* Efek glow saat hover */
+  .button:hover {
+    background-color: #ffffff; /* Anda bisa menyesuaikan warna ini */
+    box-shadow: 0 0 15px rgb(97, 94, 94), 0 0 30px rgb(255, 255, 255), 0 0 45px rgb(255, 255, 255);
+    transform: scale(1.05); /* Efek pembesaran saat hover */
+  }
+  
