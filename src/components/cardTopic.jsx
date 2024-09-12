@@ -15,7 +15,7 @@ const Card = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center gap-5 w-full h-auto md:h-[400px] lg:h-[500px] xl:h-[650px] pt-[40px] pb-[100px]">
+    <div className="flex flex-wrap justify-center gap-5 w-full h-auto md:h-[300px] lg:h-[400px] xl:h-[500px] pt-[40px] pb-[100px]">
       {dataCard.map((data, index) => {
         const alignmentClass =
           index === 0 || index === 2 ? "items-end" : "items-start";
@@ -31,7 +31,7 @@ const Card = () => {
               {/* Tampak Depan */}
               <div
                 id="card-service"
-                className="flex flex-col gap-2 p-3 lg:p-5 w-full h-[340px] md:h-[160px] lg:h-[260px] 2xl:h-[400px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
+                className="flex flex-col gap-2 p-3 lg:p-5 w-full h-[280px] md:h-[140px] lg:h-[200px] 2xl:h-[300px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
                 style={{
                   backgroundImage: `url(${data.thumbnail})`,
                   backgroundSize: "cover",
@@ -40,10 +40,10 @@ const Card = () => {
                 }}
                 onClick={() => handleFlip(index)}
               >
-                <h3 className="px-3 py-1 text-2xl font-bold bg-white sm:text-base lg:py-2 lg:px-5 lg:text-3xl rounded-2xl w-fit">
+                <h3 className="px-3 py-1 text-xl font-bold bg-white sm:text-sm lg:py-2 lg:px-5 lg:text-2xl rounded-2xl w-fit">
                   {data.nameService}
                 </h3>
-                <p className="text-xl font-bold text-transparent sm:text-2xl md:text-xs lg:text-base 2xl:text-2xl">
+                <p className="text-lg font-bold text-transparent sm:text-xl md:text-xs lg:text-sm 2xl:text-lg">
                   {data.description}
                 </p>
               </div>
@@ -51,12 +51,14 @@ const Card = () => {
               {/* Tampak Belakang */}
               <div
                 id="card-service"
-                className="flex flex-col gap-2 p-5 sm:p-3 lg:p-5 w-full h-[340px] md:h-[160px] lg:h-[260px] 2xl:h-[400px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
+                className="flex flex-col gap-2 p-5 sm:p-3 lg:p-5 w-full h-[280px] md:h-[140px] lg:h-[200px] 2xl:h-[300px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
                 onClick={() => handleFlip(index)}
               >
-                <p className="text-xl font-bold sm:text-2xl md:text-xs lg:text-base 2xl:text-2xl">
-                  {data.description}
-                </p>
+                <div className="overflow-y-auto max-h-[150px]">
+                  <p className="text-lg font-bold sm:text-xl md:text-xs lg:text-sm 2xl:text-lg">
+                    {data.description}
+                  </p>
+                </div>
               </div>
             </ReactCardFlip>
           </div>

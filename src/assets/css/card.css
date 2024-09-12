@@ -1,0 +1,28 @@
+/* Base styling for each slide */
+.light-effect {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease; /* Smooth transition between slides */
+  }
+  
+  /* Light effect overlay */
+  .light-effect::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7), transparent 70%);
+    transform: translate(-50%, -50%) scale(0); /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.5s ease; /* Smooth fade-in and scale-up */
+    pointer-events: none; /* Ensures it doesn't interfere with the slide */
+  }
+  
+  /* Apply the glow effect when active */
+  .light-effect-active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* Scale to full size */
+  }
+  

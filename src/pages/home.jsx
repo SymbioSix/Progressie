@@ -7,12 +7,12 @@ import CardService from "../components/cardService";
 import CardTopic from "../components/cardTopic";
 import heroImagez from "../assets/images/star.jpg"; // Import gambar
 import heroImage from "../assets/images/paralax2.png"; // Import gambar
-import heroImage2 from "../assets/images/paralax3.png"; // Import gambar
+import "../assets/css/login.css"; 
 import "../assets/css/parralax.css"; // Import file CSS untuk parallax
 
 export default function HomePage() {
   const navigate = useNavigate();
-
+  
   const handleLoginClick = () => {
     const token = localStorage.getItem("authToken");
     if (token) {
@@ -36,26 +36,48 @@ export default function HomePage() {
       navigate("/login");
     }
   };
-
   useEffect(() => {
+    const body = document.body;
+    
+    // Function to handle scroll and set class
     const handleScroll = () => {
-      const body = document.body;
       const scrollPosition = window.scrollY;
-
+  
       if (scrollPosition > 100) {
         body.classList.add("scrolled");
       } else {
         body.classList.remove("scrolled");
       }
     };
-
+  
+    // Check scroll position on page load or refresh
+    handleScroll();
+  
+    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
-
+  
+    // Cleanup event listener on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+  
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const heroSection = document.getElementById("hero");
+      const scrollPosition = window.scrollY;
+  
+      // Adjust background position for parallax effect
+      heroSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+    };
+  
+    window.addEventListener("scroll", handleParallaxScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleParallaxScroll);
+    };
+  }, []);
+  
   return (
     <>
       <Navbar />
@@ -76,11 +98,12 @@ export default function HomePage() {
                   Let’s get a positive mindset
                 </p>
                 <button
-                  onClick={handleLoginClick}
-                  className="w-fit self-center font-bold px-10 rounded-full py-2 shadow-md bg-[#F7EBE6] mt-5 text-black"
-                >
-                  Login
-                </button>
+  onClick={handleLoginClick}
+  className="button mt-5"
+>
+  Login
+</button>
+
                 
               </div>
               <div className="w-1/2 sm:w-[65%] py-5">
@@ -99,31 +122,27 @@ export default function HomePage() {
           id="service"
           className="bg-gradient-to-t from-[#FFFFFF] from-70% to-black to-90%"
         >
-          <div className="w-full h-auto pt-[150px] sm:pt-[500px] pb-[100px]">
+          <div className="w-full h-auto pt-[150px] sm:pt-[200px] pb-[100px] ">
             <CardService />
           </div>
-          
+         
         </section>
 
         <section
   id="topic"
-  className="w-full h-auto bg-gradient-to-t from-[#50C878] from-1% to-white to-5% flex items-center justify-center py-56"
+  className="w-full h-auto  flex items-center justify-center py-5"
 >
+  
   <div className="container flex flex-col sm:flex-row items-center justify-between">
-    <div className="w-1/2 sm:w-[65%] py-5 px-4 sm:px-8">
-      <img
-        src={heroImage2}
-        alt="Hero image Selfie"
-        className="object-contain"
-      />
-    </div>
-    <h1 className="text-3xl font-bold text-center sm:text-left  sm:py-0">
+    
+    <h1 className="text-3xl font-bold text-center sm:text-left  sm:py-5">
       🎉 Exclusive Offer: Free for the First 100 Users! 🎉
     </h1>
             <CardTopic />
           </div>
         </section>
       </main>
+      <div className="py-32 bg-gradient-to-t from-[#50C878] from-10% to-white to-70%"></div>
       <Footer />
     </>
   );

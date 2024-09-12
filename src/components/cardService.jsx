@@ -10,24 +10,25 @@ import dataCard from "../api/cardService";
 const Card = () => {
   return (
     <Swiper
-      slidesPerView={1}
+      slidesPerView={2}
       spaceBetween={30}
       loop={true}
       autoplay={{
-        delay: 3000,
+        delay: false, // Tidak ada jeda antara transisi
         disableOnInteraction: false,
       }}
+      speed={5000} // Waktu transisi antar slide dalam milidetik (10 detik)
       breakpoints={{
         640: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           spaceBetween: 20,
         },
         768: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           spaceBetween: 30,
         },
         1024: {
-          slidesPerView: 1,
+          slidesPerView: 2,
           spaceBetween: 30,
         },
       }}
@@ -43,7 +44,7 @@ const Card = () => {
         >
           <div
             id="card-service"
-            className="w-1/2 h-[130px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] 2xl:h-[220px] flex flex-col gap-2 p-4 rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
+            className="w-full h-[130px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] 2xl:h-[220px] flex flex-col gap-2 p-4 rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
             style={{
               backgroundImage: `url(${data.thumbnail})`,
               backgroundSize: "cover",
