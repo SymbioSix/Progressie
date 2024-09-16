@@ -2,7 +2,7 @@ import api from "../utils/request";
 
 export const getAboutUs = async () => {
   try {
-    const response = await api.get("/v1/aboutus");
+    const response = await api.get("/v1/hero");
     return response.data;
   } catch (error) {
     validateError(error);
@@ -11,7 +11,7 @@ export const getAboutUs = async () => {
 
 export const getAboutUsById = async (id) => {
   try {
-    const response = await api.get(`/aboutus/${id}`);
+    const response = await api.get(`/hero/${id}`);
     return response.data;
   } catch (error) {
     validateError(error);
