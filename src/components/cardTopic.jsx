@@ -55,7 +55,7 @@ const Card = () => {
   onClick={() => handleFlip(index)}
 >
   <div className="overflow-y-auto max-h-[150px]">
-    <p className="text-xs font-bold sm:text-xs md:text-[10px] lg:text-[11px] 2xl:text-sm">
+    <p className="text-[15px] font-bold sm:text-[15px] md:text-[15px] lg:text-[15px] 2xl:text-[15px]">
       {data.description}
     </p>
   </div>
