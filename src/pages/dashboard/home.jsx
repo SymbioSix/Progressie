@@ -1,47 +1,55 @@
+import React, { useState } from "react";
+import "./assets/css/home.css";
+import ThreeDChart from './components/ThreeDChart';
 import Sidebar from "./components/sidebar";
 import Navbar from "./components/header";
 import useTokenExpirationCheck from "../../hooks/useTokenExpire";
 
-
 export default function DashboardPage() {
   useTokenExpirationCheck();
 
+  const [resetTrigger, setResetTrigger] = useState(false);
+
+  const handleResetClick = () => {
+    setResetTrigger(prev => !prev); // Memicu reset kamera dengan toggle state
+  };
+
   return (
-    <div className="flex flex-row h-screen">
+    <div className="dashboard-container">
       <Sidebar />
-      <div className="flex flex-col w-full">
+      <div className="main-content">
         <Navbar />
-        <div className="flex flex-col lg:flex-row gap-4 p-4 mt-20"> {/* Increased top margin */}
+        <div className="inner-content">
           {/* First Row */}
-          <div className="flex flex-row flex-wrap gap-4 w-full">
-            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
-              <p className="text-center">Total Achievement</p>
+          <div className="row">
+            <div className="card card-one-third card-toppeng color-card">
+              <p className="">Newest Article</p>
             </div>
-            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
-              <p className="text-center">Recent Activity</p>
+            <div className="card card-two-thirds color-card-w ">
+              <p className="">Daily progress</p>
+              <div className="card three-d-chart-container hs ">
+                <button onClick={handleResetClick} className="reset-button   ">Reset View</button>
+                <ThreeDChart resetTrigger={resetTrigger} />
+              </div>
             </div>
-            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
-              <p className="text-center">Leaderboard</p>
+            <div className="card card-one-third card-leaderboard card-bottong-left color-card">
+              <p className=" ">Leaderboard</p>
             </div>
           </div>
 
           {/* Second Row */}
-          <div className="flex flex-row flex-wrap gap-4 w-full mt-4">
-            <div className="w-full lg:w-2/3 bg-gray-100 border border-gray-300 p-4">
-              <p className="text-center">Activity Chart</p>
+          <div className="row mt-1">
+            <div className="card card-one-second card-bottong-left-2 color-card">
+              <p className=" ">Total Achievement</p>
             </div>
-            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
+            <div className="card card-one-second card-bottong color-card">
+              <p className="">Recent Activity</p>
+            </div>
+            <div className="card card-one-second card-bottong color-card">
+              <p className="">To do list</p>
+            </div>
+            <div className="card card-one-second card-bottong color-card">
               <p className="text-center">Progress to Rank-Up</p>
-            </div>
-          </div>
-
-          {/* Third Row */}
-          <div className="flex flex-row flex-wrap gap-4 w-full mt-4">
-            <div className="w-full lg:w-2/3 bg-gray-100 border border-gray-300 p-4">
-              <p className="text-center">To-Do List</p>
-            </div>
-            <div className="w-full lg:w-1/3 bg-gray-100 border border-gray-300 p-4">
-              <p className="text-center">Newest Article</p>
             </div>
           </div>
         </div>

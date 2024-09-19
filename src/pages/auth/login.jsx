@@ -5,9 +5,8 @@ import { signIn } from "../../services/auth";
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
 import Button from "../../components/button";
-import overlayAuth from "../../assets/images/process.png";
-
-
+import "../../assets/css/login.css"; 
+import heroImagez from "../../assets/images/star.jpg"; 
 export default function LoginPage() {
   const navigation = useNavigate();
   const [email, setEmail] = useState("");
@@ -48,10 +47,11 @@ export default function LoginPage() {
   return (
     <>
       <Navbar />
-      <main className="w-full h-screen max-h-screen bg-white">
+      <main className="w-full h-screen max-h-screen bg-white" >
         <section
           id="login"
-          className="w-full h-full bg-gradient-to-t from-[#979797] from-10% to-white to-90%"
+          className="w-full h-full bg-gradient-to-t from-[#979797] from-10% to-black to-90%"
+          style={{ backgroundImage: `url(${heroImagez})` }}
         >
           <div className="container flex flex-wrap w-full h-full">
             <div className="w-full lg:w-[35%] lg:max-w-[35%] h-full flex justify-center items-center">
@@ -115,7 +115,7 @@ export default function LoginPage() {
                       type="submit"
                       text="Login"
                       onClick={handleSubmit}
-                      className="w-fit px-12 shadow-[0px_4px_5px_0px_rgba(0,0,0,0.3)] text-black py-2 text-base sm:text-2xl font-bold bg-[#F7EBE6] rounded-full"
+                      className="button w-fit px-12 shadow-[0px_4px_5px_0px_rgba(0,0,0,0.3)] text-black py-2 text-base sm:text-2xl font-bold bg-[#F7EBE6] rounded-full"
                     />
                     <p className="text-sm sm:text-base">
                       Or{" "}
@@ -129,11 +129,6 @@ export default function LoginPage() {
               </div>
             </div>
             <div className="hidden lg:flex w-full lg:w-[65%] lg:max-w-[65%] pl-5 h-full justify-end items-center">
-              <img
-                src={overlayAuth}
-                alt="Overlay Process Selfie"
-                className="w-full h-full bg-center bg-cover"
-              />
             </div>
           </div>
         </section>
