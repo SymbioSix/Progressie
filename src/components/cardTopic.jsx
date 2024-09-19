@@ -3,6 +3,7 @@ import ReactCardFlip from "react-card-flip";
 
 import dataCard from "../api/cardTopic";
 
+
 const Card = () => {
   const [isFlipped, setIsFlipped] = useState(
     Array(dataCard.length).fill(false)
@@ -15,7 +16,7 @@ const Card = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center gap-5 w-full h-auto md:h-[300px] lg:h-[400px] xl:h-[500px] pt-[40px] pb-[100px]">
+    <div className="flex flex-wrap justify-between gap-10 md:gap-0 w-full h-auto md:h-[400px] lg:h-[500px] xl:h-[650px] pt-[40px] pb-[100px]">
       {dataCard.map((data, index) => {
         const alignmentClass =
           index === 0 || index === 2 ? "items-end" : "items-start";
@@ -30,37 +31,35 @@ const Card = () => {
             >
               {/* Tampak Depan */}
               <div
-  id="card-service"
-  className="flex flex-col gap-2 p-3 lg:p-5 w-full h-[280px] md:h-[140px] lg:h-[200px] 2xl:h-[300px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
-  style={{
-    backgroundImage: `url(${data.thumbnail})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: "100%",
-  }}
-  onClick={() => handleFlip(index)}
->
-  <h3 className="px-3 py-1 text-sm font-bold text-white sm:text-xs lg:py-2 lg:px-5 lg:text-base rounded-2xl w-fit">
-    {data.nameService}
-  </h3>
-  <p className="text-xs font-bold text-transparent sm:text-xs md:text-[10px] lg:text-[11px] 2xl:text-sm">
-    {data.description}
-  </p>
-</div>
+                id="card-service"
+                className="flex flex-col gap-2 p-3 lg:p-5 w-full h-[340px] md:h-[160px] lg:h-[260px] 2xl:h-[400px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
+                style={{
+                  backgroundImage: `url(${data.thumbnail})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width: "100%",
+                }}
+                onClick={() => handleFlip(index)}
+              >
+                <h3 className="px-3 py-1 text-2xl font-bold bg-white sm:text-base lg:py-2 lg:px-5 lg:text-3xl rounded-2xl w-fit">
+                  {data.nameService}
+                </h3>
+                {/* Cheat style :) */}
+                <p className="text-xl font-bold text-transparent sm:text-2xl md:text-xs lg:text-base 2xl:text-2xl">
+                  {data.description}
+                </p>
+              </div>
 
-{/* Tampak Belakang */}
-<div
-  id="card-service"
-  className="flex flex-col gap-2 p-5 sm:p-3 lg:p-5 w-full h-[280px] md:h-[140px] lg:h-[200px] 2xl:h-[300px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
-  onClick={() => handleFlip(index)}
->
-  <div className="overflow-y-auto max-h-[150px]">
-    <p className="text-[15px] font-bold sm:text-[15px] md:text-[15px] lg:text-[15px] 2xl:text-[15px]">
-      {data.description}
-    </p>
-  </div>
-</div>
-
+              {/* Tampak Belakang */}
+              <div
+                id="card-service"
+                className="flex flex-col gap-2 p-5 sm:p-3 lg:p-5 w-full h-[340px] md:h-[160px] lg:h-[260px] 2xl:h-[400px] rounded-xl bg-white shadow-[0_5px_3px_0px_rgba(0,0,0,1)]"
+                onClick={() => handleFlip(index)}
+              >
+                <p className="text-xl font-bold sm:text-2xl md:text-xs lg:text-base 2xl:text-2xl">
+                  {data.description}
+                </p>
+              </div>
             </ReactCardFlip>
           </div>
         );

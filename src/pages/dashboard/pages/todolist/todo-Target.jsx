@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { Icon } from "@iconify/react";
 
 import { createTodolist } from "../../../../services/todolist";
@@ -87,8 +87,13 @@ export default function ToDoListPage() {
           </div>
           {/* Action button area */}
           <div className="flex items-center justify-between w-full h-full basis-1/2">
-            <Link to="/dashboard/todolist" className="block text-center w-[40%] h-auto px-5 py-2 text-xl font-bold text-black bg-white border-black border-2 rounded-3xl hover:text-white hover:bg-black hover:border-gray-500 hover:border-none">Back</Link>
-            <button onClick={handleSubmit}
+            <button onClick={
+              () => {
+                window.location.href = "/dashboard/todolist";
+              }
+            } className="w-[40%] h-auto px-5 py-2 text-xl font-bold text-black bg-white border-black border-2 rounded-3xl hover:text-white hover:bg-black hover:border-gray-500 hover:border-none">Back</button>
+            <button
+              onClick={handleSubmit}
               className="w-[40%] h-auto px-5 py-2 text-xl font-bold text-black bg-white border-black border-2 rounded-3xl hover:text-white hover:bg-black hover:border-gray-500 hover:border-none">Add Target</button>
           </div>
         </div>

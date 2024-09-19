@@ -1,15 +1,16 @@
 import api from "../utils/request";
 
-export const getAboutUs = async () => {
+
+export const getHome = async () => {
   try {
-    const response = await api.get("/v1/aboutus");
+    const response = await api.get("/aboutus");
     return response.data;
   } catch (error) {
     validateError(error);
   }
 };
 
-export const getAboutUsById = async (id) => {
+export const getHomeById = async (id) => {
   try {
     const response = await api.get(`/aboutus/${id}`);
     return response.data;

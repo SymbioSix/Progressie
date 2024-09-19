@@ -86,42 +86,43 @@ export default function FaqPage() {
       <main className="w-full h-auto">
         <section
           id="hero"
-          className="w-full h-[120px] bg-cover bg-[url('/src/assets/images/about-hero.png')]"
+          className="w-full h-[500px] bg-cover bg-[url('/src/assets/images/about-hero.png')]"
         >
           <div className="container h-full">
             <div className="flex items-center justify-center w-full h-full">
-              <p className="text-[35px] font-bold text-white">FAQ</p>
+              <p className="text-[70px] font-bold text-white">FAQ</p>
             </div>
           </div>
         </section>
-        <section id="list-menu" className="w-full h-auto py-[30px]"> {/* py-[60px] menjadi py-[30px] */}
-  <div className="container w-full h-full">
-    <ul className="flex flex-wrap items-center justify-between w-full h-full">
-      <li className="text-sm font-black sm:text-lg md:text-2xl"> {/* ukuran font dikurangi setengah */}
-        <a href="#general">General</a>
-      </li>
-      <li className="text-sm font-black sm:text-lg md:text-2xl">
-        <a href="#course">Courses</a>
-      </li>
-      <li className="text-sm font-black sm:text-lg md:text-2xl">
-        <a href="#forum">Forum</a>
-      </li>
-      <li className="text-sm font-black sm:text-lg md:text-2xl">
-        <a href="#rank">Rank</a>
-      </li>
-      <li
-        id="last-item-menu"
-        className="pt-1.5 text-sm font-black text-center sm:text-lg md:text-2xl sm:pt-0"> {/* padding dan font dikurangi */}
-        <a href="#technical">Technical Support</a>
-      </li>
-    </ul>
-  </div>
-</section>
+        <section id="list-menu" className="w-full h-auto py-[60px]">
+          <div className="container w-full h-full">
+            <ul className="flex flex-wrap items-center justify-between w-full h-full">
+              <li className="text-base font-black sm:text-xl md:text-4xl">
+                <a href="#general">General</a>
+              </li>
+              <li className="text-base font-black sm:text-xl md:text-4xl">
+                <a href="#course">Courses</a>
+              </li>
+              <li className="text-base font-black sm:text-xl md:text-4xl">
+                <a href="#forum">Forum</a>
+              </li>
+              <li className="text-base font-black sm:text-xl md:text-4xl">
+                <a href="#rank">Rank</a>
+              </li>
+              <li
+                id="last-item-menu"
+                className="pt-3 text-base font-black text-center sm:text-xl md:text-4xl sm:pt-0"
+              >
+                <a href="#technical">Technical Support</a>
+              </li>
+            </ul>
+          </div>
+        </section>
         <section id="general" className="w-full h-auto !pt-[10px] py-[30px] sm:py-[50px]">
           <h3 className="pb-10 text-3xl font-black text-center sm:text-5xl">
             General
           </h3>
-          <div className="container sm:px-5 lg:px-[200px] 2xl:px-[150px] w-full h-auto">
+          <div className="container sm:px-10 lg:px-[100px] 2xl:px-[300px] w-full h-auto">
             <Accordion items={dataGeneral} />
           </div>
         </section>
@@ -129,7 +130,7 @@ export default function FaqPage() {
           <h3 className="pb-10 text-3xl sm:text-5xl font-black text-center mt-[20px] sm:mt-[100px]">
             Courses
           </h3>
-          <div className="container sm:px-5 lg:px-[200px] 2xl:px-[150px] w-full h-auto">
+          <div className="container sm:px-10 lg:px-[100px] 2xl:px-[300px] w-full h-auto">
             <Accordion items={dataCourse} />
           </div>
         </section>
@@ -137,7 +138,7 @@ export default function FaqPage() {
           <h3 className="pb-10 text-3xl sm:text-5xl font-black text-center mt-[20px] sm:mt-[100px]">
             Forum
           </h3>
-          <div className="container sm:px-5 lg:px-[200px] 2xl:px-[150px] w-full h-auto">
+          <div className="container sm:px-10 lg:px-[100px] 2xl:px-[300px] w-full h-auto">
             <Accordion items={dataForum} />
           </div>
         </section>
@@ -145,7 +146,7 @@ export default function FaqPage() {
           <h3 className="pb-10 text-3xl sm:text-5xl font-black text-center mt-[20px] sm:mt-[100px]">
             Rank Leaderbord
           </h3>
-          <div className="container sm:px-5 lg:px-[200px] 2xl:px-[150px] w-full h-auto">
+          <div className="container sm:px-10 lg:px-[100px] 2xl:px-[300px] w-full h-auto">
             <Accordion items={dataRank} />
           </div>
         </section>
@@ -153,7 +154,7 @@ export default function FaqPage() {
           <h3 className="pb-10 text-3xl sm:text-5xl font-black text-center mt-[20px] sm:mt-[100px]">
             Technical Support
           </h3>
-          <div className="container sm:px-5 lg:px-[200px] 2xl:px-[150px] w-full h-auto">
+          <div className="container sm:px-10 lg:px-[100px] 2xl:px-[300px] w-full h-auto">
             <Accordion items={dataTech} />
           </div>
         </section>
