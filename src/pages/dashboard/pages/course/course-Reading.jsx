@@ -13,7 +13,7 @@ export default function CoursePage(){
           daysAgo: 4,
           title: 'Tips sopan santun ke orang yang lebih tua',
           description:
-            'An intense way to learn about the process and practice your design skills — My 1st hackathon Hackathons have been on my mind...',
+            'An intense ways to learn about the process and practice your design skills — My 1st hackathon Hackathons have been on my mind...',
           imgSrc: CourseCover,
           readTime: '3 min read',
           destination: "/dashboard/course/course-Example/r/article-Example",
