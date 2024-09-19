@@ -16,6 +16,10 @@ import ForgotMainPage from './pages/auth/forgotMain.jsx';
 // Dashboard User Page
 import DashboardPage from './pages/dashboard/home.jsx';
 import DashboardCoursePage from './pages/dashboard/pages/course/index.jsx';
+import DashboardCoursePageExample from './pages/dashboard/pages/course/course-Video.jsx';
+import DashboardCoursePageReadingRecommend from './pages/dashboard/pages/course/course-Reading.jsx';
+import DashboardCoursePageReadingMarked from './pages/dashboard/pages/course/course-Marked.jsx';
+import DashboardCoursePageArticle from './pages/dashboard/pages/course/course-Article.jsx';
 import DashboardAchievementPage from './pages/dashboard/pages/achievement.jsx';
 import DashboardToDoListPage from './pages/dashboard/pages/todolist/index.jsx';
 import DashboardToDoListCoursePage from './pages/dashboard/pages/todolist/todo-Course.jsx';
@@ -82,6 +86,38 @@ const routes = createBrowserRouter([
     element: (
       <ProtectPage>
         <DashboardCoursePage />
+      </ProtectPage>
+    )
+  },
+  {
+    path: "/dashboard/course/course-Example",
+    element: (
+      <ProtectPage>
+        <DashboardCoursePageExample />
+      </ProtectPage>
+    )
+  },
+  {
+    path: "/dashboard/course/course-Example/r/recommend",
+    element: (
+      <ProtectPage>
+        <DashboardCoursePageReadingRecommend />
+      </ProtectPage>
+    )
+  },
+  {
+    path: "/dashboard/course/course-Example/r/marked",
+    element: (
+      <ProtectPage>
+        <DashboardCoursePageReadingMarked />
+      </ProtectPage>
+    )
+  },
+  {
+    path: "/dashboard/course/course-Example/r/article-Example",
+    element: (
+      <ProtectPage>
+        <DashboardCoursePageArticle />
       </ProtectPage>
     )
   },
