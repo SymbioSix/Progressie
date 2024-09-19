@@ -120,16 +120,15 @@ const CameraControls = ({ resetTrigger }) => {
 const ThreeDChart = ({ resetTrigger }) => {
   const [barData, setBarData] = useState([]);
 
+  const fetchBarData = async () => {
+    try {
+      const data = await getBarData();
+      setBarData(data);
+    } catch (error) {
+      console.error('Failed to fetch bar data:', error);
+    }
+  };
   useEffect(() => {
-    const fetchBarData = async () => {
-      try {
-        const data = await getBarData();
-        setBarData(data);
-      } catch (error) {
-        console.error('Failed to fetch bar data:', error);
-      }
-    };
-
     fetchBarData();
   }, []);
 
@@ -138,15 +137,18 @@ const ThreeDChart = ({ resetTrigger }) => {
       <ambientLight intensity={5} />
       <pointLight position={[10, 10, 10]} />
 
-      {barData.map((bar, index) => (
-        <Bar
-          key={bar.day}
-          position={new Vector3(index * 1.5 - 4.5, bar.height / 2 - 2, 5)}
-          height={bar.height}
-          color="white"
-          day={bar.day}
-        />
-      ))}
+      {barData == [] ?
+        <p>No data found</p>
+        :
+        barData.map((bar, index) => (
+          <Bar
+            key={bar.day_of_week}
+            position={new Vector3(index * 1.5 - 4.5, bar.count / 2 - 2, 5)}
+            height={bar.count}
+            color="white"
+            day={bar.day_of_week}
+          />
+        ))}
 
       <CameraControls resetTrigger={resetTrigger} />
     </Canvas>

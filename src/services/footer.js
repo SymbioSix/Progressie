@@ -1,8 +1,17 @@
 import api from "../utils/request";
 
-export const getBarData = async () => {
+export const GetFooter = async () => {
   try {
-    const response = await api.get("/v1/dashboard/activity-chart");
+    const response = await api.get("/v1/footer");
+    return response.data;
+  } catch (error) {
+    validateError(error);
+  }
+};
+
+export const GetFooterId = async (id) => {
+  try {
+    const response = await api.get(`/footer/${id}`);
     return response.data;
   } catch (error) {
     validateError(error);
