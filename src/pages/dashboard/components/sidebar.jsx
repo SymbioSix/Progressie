@@ -9,20 +9,14 @@ const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  const locationSideMenuHome = (path) => {
+  const locationSideMenu = (path) => {
     if (location.pathname === path) {
       return "bg-gray-200";
     }
   };
 
-  const locationSideMenu = (path) => {
-    if (location.pathname.startsWith(path)) {
-      return "bg-gray-200";
-    }
-  };
-
   return (
-    <aside className="fixed z-50 flex h-screen">
+    <aside className="absolute z-50 flex h-screen">
       <nav
         className={`h-full flex flex-col bg-white border-r shadow-sm transition-all duration-500
                 ${open ? "w-56" : "w-16"}`}
@@ -52,7 +46,7 @@ const Sidebar = () => {
               />
             </span>
             <li
-              className={`hover:bg-gray-100 w-full ${locationSideMenuHome(
+              className={`hover:bg-gray-100 w-full ${locationSideMenu(
                 "/dashboard"
               )}`}
             >
@@ -113,7 +107,7 @@ const Sidebar = () => {
                 </svg>
                 <span
                   className={`ml-4 transition-all duration-1000 
-                   ${open ? "block" : "hidden"}`}
+                                    ${open ? "block" : "hidden"}`}
                 >
                   Course
                 </span>
