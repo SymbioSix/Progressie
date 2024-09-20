@@ -2,16 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Edges, Text } from '@react-three/drei';
 import { Vector3, MathUtils } from 'three';
-
-const barData = [
-  { day: 'Monday', height: 2 },
-  { day: 'Tuesday', height: 3 },
-  { day: 'Wednesday', height: 1 },
-  { day: 'Thursday', height: 4 },
-  { day: 'Friday', height: 2.5 },
-  { day: 'Saturday', height: 3.5 },
-  { day: 'Sunday', height: 2 },
-];
+import { getBarData } from "../../../services/activitychart";
 
 const Bar = ({ position, height, color, day }) => {
   const textRef = useRef();
@@ -49,7 +40,7 @@ const Bar = ({ position, height, color, day }) => {
         ref={textRef}
         position={[0, height / 2 + 0.5, 0]}
         fontSize={0.3}
-        color="black"
+        color="white"
         anchorX="center"
         anchorY="middle"
       >
@@ -127,20 +118,37 @@ const CameraControls = ({ resetTrigger }) => {
 };
 
 const ThreeDChart = ({ resetTrigger }) => {
+  const [barData, setBarData] = useState([]);
+
+  const fetchBarData = async () => {
+    try {
+      const data = await getBarData();
+      setBarData(data);
+    } catch (error) {
+      console.error('Failed to fetch bar data:', error);
+    }
+  };
+  useEffect(() => {
+    fetchBarData();
+  }, []);
+
   return (
     <Canvas className="three-d-chart-canvas">
       <ambientLight intensity={5} />
       <pointLight position={[10, 10, 10]} />
 
-      {barData.map((bar, index) => (
-        <Bar
-          key={bar.day}
-          position={new Vector3(index * 1.5 - 4.5, bar.height / 2 - 2, 5)}
-          height={bar.height}
-          color="skyblue"
-          day={bar.day}
-        />
-      ))}
+      {barData == [] ?
+        <p>No data found</p>
+        :
+        barData.map((bar, index) => (
+          <Bar
+            key={bar.day_of_week}
+            position={new Vector3(index * 1.5 - 4.5, bar.count / 2 - 2, 5)}
+            height={bar.count}
+            color="white"
+            day={bar.day_of_week}
+          />
+        ))}
 
       <CameraControls resetTrigger={resetTrigger} />
     </Canvas>

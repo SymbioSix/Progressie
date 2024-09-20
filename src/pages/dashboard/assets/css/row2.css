@@ -1,0 +1,10 @@
+@media (min-width: 1023px) {
+  .element {
+    position: relative;
+    top: -150px;
+    /* CSS untuk elemen */
+
+
+  }
+}
+

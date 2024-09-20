@@ -1,7 +1,7 @@
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 
-import profileArya from "../../assets/images/arya.jpg"
+
 import "../../assets/css/about.css";
 import { useEffect, useState } from "react";
 import { getAboutUs } from "../../services/about";
