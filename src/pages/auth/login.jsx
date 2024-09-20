@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+import { UserContext } from "../../context/user";
 import { signIn } from "../../services/auth";
 import Navbar from "../../components/navbar";
 import Input from "../../components/inputAuth";
 import Button from "../../components/button";
-import "../../assets/css/login.css"; 
-import heroImagez from "../../assets/images/star.jpg"; 
+
+
 export default function LoginPage() {
   const navigation = useNavigate();
+  const { login } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -16,42 +18,28 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
     }
-  
+
     try {
-      const data = { email, password };
-      const response = await signIn(data);
-      const token = response?.result?.access_token;
-  
-      if (token) {
-        if (rememberMe) {
-          localStorage.setItem('authToken', token);
-        } else {
-          sessionStorage.setItem('authToken', token);
-        }
-  
-        navigation('/dashboard');
-      } else {
-        setError('Login failed, token not found');
-      }
+      const { token, role, dataUser } = await signIn(email, password);
+      login(token, role, dataUser, rememberMe);
+      navigation("/dashboard");
     } catch (error) {
-      setError('Login failed, please try again');
+      setError("Login failed, please try again");
     }
   };
-  
 
   return (
     <>
       <Navbar />
-      <main className="w-full h-screen max-h-screen bg-white" >
+      <main className="w-full h-screen max-h-screen bg-white">
         <section
           id="login"
           className="w-full h-full bg-gradient-to-t from-[#979797] from-10% to-black to-90%"
-          style={{ backgroundImage: `url(${heroImagez})` }}
         >
           <div className="container flex flex-wrap w-full h-full">
             <div className="w-full lg:w-[35%] lg:max-w-[35%] h-full flex justify-center items-center">
@@ -98,7 +86,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Type your password"
-                      icon="fluent:key-32-filled"
+                      icon="carbon:password"
                     />
                     <p className="text-sm sm:text-base">
                       <Link
@@ -115,7 +103,7 @@ export default function LoginPage() {
                       type="submit"
                       text="Login"
                       onClick={handleSubmit}
-                      className="button w-fit px-12 shadow-[0px_4px_5px_0px_rgba(0,0,0,0.3)] text-black py-2 text-base sm:text-2xl font-bold bg-[#F7EBE6] rounded-full"
+                      className="w-fit px-12 shadow-[0px_4px_5px_0px_rgba(0,0,0,0.3)] text-black py-2 text-base sm:text-2xl font-bold bg-[#F7EBE6] rounded-full"
                     />
                     <p className="text-sm sm:text-base">
                       Or{" "}

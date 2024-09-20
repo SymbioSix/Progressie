@@ -2,7 +2,7 @@ import api from "../utils/request";
 
 export const getBarData = async () => {
   try {
-    const response = await api.get("/v1/dashboard/activity-chart");
+    const response = await api.get("/dashboard/activity-chart");
     return response.data;
   } catch (error) {
     validateError(error);

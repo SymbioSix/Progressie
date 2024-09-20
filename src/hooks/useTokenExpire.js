@@ -9,13 +9,11 @@ const TokenExpireValidation = () => {
 
   useEffect(() => {
     const checkToken = async () => {
-      console.log("Cek token expire...");
-      const token = localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
   
       if (!token || await isTokenExpired(token)) {
-        console.log("Token expired, redirecting to login...");
-        localStorage.removeItem("authToken");
-        sessionStorage.removeItem("authToken");
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate("/login");
       }
     };

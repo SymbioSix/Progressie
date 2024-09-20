@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 
 
-// eslint-disable-next-line react/prop-types
 const InputComponent = ({ type, placeholder, icon, value, onChange, onToggle }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -14,7 +13,7 @@ const InputComponent = ({ type, placeholder, icon, value, onChange, onToggle }) 
 
   return (
     <div className="flex items-center w-full gap-3 py-2 mb-4 text-base text-black border-black border-b-[3px]">
-      <Icon icon={icon} width="24" height="24" style={{ color: 'black' }} className="w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]" />
+      <Icon icon={icon} style={{ color: 'black' }} width="64" height="64" className="w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]" />
       <input
         type={type === 'password' && showPassword ? 'text' : type}
         placeholder={placeholder}
