@@ -2,7 +2,7 @@ import api from "../utils/request";
 
 export const GetFooter = async () => {
   try {
-    const response = await api.get("/v1/footer");
+    const response = await api.get("/footer");
     return response.data;
   } catch (error) {
     validateError(error);

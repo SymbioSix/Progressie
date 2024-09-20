@@ -2,7 +2,7 @@ import api from "../utils/request";
 
 export const getAboutUs = async () => {
   try {
-    const response = await api.get("/v1/faqcategory");
+    const response = await api.get("/faqcategory");
     return response.data;
   } catch (error) {
     validateError(error);

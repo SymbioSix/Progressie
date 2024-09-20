@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { UserProvider } from "./context/user.jsx";
 import ProtectPage from "./components/protectRoute.jsx";
 
 // Landing Page
@@ -13,22 +14,19 @@ import RegisterPage from './pages/auth/register.jsx';
 import ForgotBasePage from './pages/auth/forgotBase.jsx';
 import ForgotMainPage from './pages/auth/forgotMain.jsx';
 
-// Dashboard User Page
+// Dashboard Page
 import DashboardPage from './pages/dashboard/home.jsx';
 import DashboardCoursePage from './pages/dashboard/pages/course/index.jsx';
-import DashboardCoursePageExample from './pages/dashboard/pages/course/course-Video.jsx';
-import DashboardCoursePageReadingRecommend from './pages/dashboard/pages/course/course-Reading.jsx';
-import DashboardCoursePageReadingMarked from './pages/dashboard/pages/course/course-Marked.jsx';
-import DashboardCoursePageArticle from './pages/dashboard/pages/course/course-Article.jsx';
 import DashboardAchievementPage from './pages/dashboard/pages/achievement.jsx';
 import DashboardToDoListPage from './pages/dashboard/pages/todolist/index.jsx';
 import DashboardToDoListCoursePage from './pages/dashboard/pages/todolist/todo-Course.jsx';
 import DashboardToDoListTargetPage from './pages/dashboard/pages/todolist/todo-Target.jsx';
 import DashboardSettingsPage from './pages/dashboard/pages/setting.jsx';
 import DashboarProfilePage from './pages/dashboard/pages/profile.jsx';
-import NotFoundPage from './pages/404.jsx';
-import './index.css';
 
+import NotFoundPage from './pages/404.jsx';
+import UnauthorizedPage from './pages/403.jsx';
+import './index.css';
 
 const routes = createBrowserRouter([
   {
@@ -76,7 +74,7 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
         <DashboardPage />
       </ProtectPage>
     )
@@ -84,47 +82,15 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/course",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
         <DashboardCoursePage />
-      </ProtectPage>
-    )
-  },
-  {
-    path: "/dashboard/course/course-Example",
-    element: (
-      <ProtectPage>
-        <DashboardCoursePageExample />
-      </ProtectPage>
-    )
-  },
-  {
-    path: "/dashboard/course/course-Example/r/recommend",
-    element: (
-      <ProtectPage>
-        <DashboardCoursePageReadingRecommend />
-      </ProtectPage>
-    )
-  },
-  {
-    path: "/dashboard/course/course-Example/r/marked",
-    element: (
-      <ProtectPage>
-        <DashboardCoursePageReadingMarked />
-      </ProtectPage>
-    )
-  },
-  {
-    path: "/dashboard/course/course-Example/r/article-Example",
-    element: (
-      <ProtectPage>
-        <DashboardCoursePageArticle />
       </ProtectPage>
     )
   },
   {
     path: "/dashboard/achievement",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser']}>
         <DashboardAchievementPage />
       </ProtectPage>
     )
@@ -132,7 +98,7 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/todolist",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser']}>
         <DashboardToDoListPage />
       </ProtectPage>
     )
@@ -140,7 +106,7 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/todolist/course",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser']}>
         <DashboardToDoListCoursePage />
       </ProtectPage>
     )
@@ -148,7 +114,7 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/todolist/target",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser']}>
         <DashboardToDoListTargetPage />
       </ProtectPage>
     )
@@ -156,7 +122,7 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/settings",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
         <DashboardSettingsPage />
       </ProtectPage>
     )
@@ -164,9 +130,15 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/profile",
     element: (
-      <ProtectPage>
+      <ProtectPage allowedRoles={['BasicUser']}>
         <DashboarProfilePage />
       </ProtectPage>
+    )
+  },
+  {
+    path: "/unauthorized",
+    element: (
+      <UnauthorizedPage />
     )
   },
   {
@@ -179,6 +151,8 @@ const routes = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={routes} />
+    <UserProvider>
+      <RouterProvider router={routes} />
+    </UserProvider>
   </React.StrictMode>
 );
