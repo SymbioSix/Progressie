@@ -1,5 +1,7 @@
+import { useContext, useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 
+import { UserContext } from "../../../context/user";
 import useTokenExpirationCheck from "../../../hooks/useTokenExpire";
 import Sidebar from "../components/sidebar";
 import Navbar from "../components/header";
@@ -7,6 +9,14 @@ import Navbar from "../components/header";
 
 export default function ProfilePage() {
   useTokenExpirationCheck();
+  const { userData } = useContext(UserContext);
+  const [getUsername, setGetUsername] = useState(null);
+
+  useEffect(() => {
+    if (userData) {
+      setGetUsername(userData?.user_data?.username);
+    }
+  });
   
   return (
     <>
@@ -15,12 +25,14 @@ export default function ProfilePage() {
         <Sidebar />
         <div className="flex w-full h-screen mt-24 ml-20">
           <div className="flex flex-col w-full h-auto mt-4 ml-5 mr-8 gap-14">
-            <div className="flex items-center justify-center w-full h-full max-h-[400px] gap-10 bg-center bg-no-repeat bg-cover bg-profile-bg rounded-2xl">
+            {/* Profiling area */}
+            <div className="flex items-center justify-center w-full h-full max-h-[400px] pt-3 pb-7 gap-10 bg-center bg-no-repeat bg-cover bg-profile-bg rounded-2xl">
               <div className="flex flex-col items-center gap-5">
                 <Icon
                   icon="mdi:account-box-outline"
-                  width="200"
-                  height="200"
+                  width="180"
+                  height="180"
+                  className="object-cover w-full h-full"
                   style={{ color: "#ffffff" }}
                 />
                 <div className="flex items-center gap-2">
@@ -34,7 +46,9 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-4xl font-bold text-white">
-                    User Name
+                    {
+                      getUsername ? getUsername : "User Name"
+                    }
                   </span>
                   <Icon
                     icon="ph:pencil-light"
@@ -45,7 +59,8 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between w-full h-auto">
+            {/* Sosial area*/}
+            {/* <div className="flex justify-between w-full h-auto">
               <div className="flex items-center flex-col gap-2 w-[33%]">
                 <span className="text-4xl text-black">0</span>
                 <span className="text-4xl text-black">Post</span>
@@ -58,7 +73,8 @@ export default function ProfilePage() {
                 <span className="text-4xl text-black">0</span>
                 <span className="text-4xl text-black">Following</span>
               </div>
-            </div>
+            </div> */}
+            {/* Detail profile area */}
             <div className="flex flex-col w-full h-auto p-5 border-2 border-black ga-3 rounded-2xl">
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-2 bg-[#F4F4F4] p-5 items-center rounded-2xl">

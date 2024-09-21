@@ -52,11 +52,13 @@ const Header = () => {
               />
               <div className="flex flex-col items-start">
                 <span className="text-sm font-bold text-white">
-                  {getUsername}
+                  {
+                    getUsername ? getUsername : "User Name"
+                  }
                 </span>
                 {
                   userRole === "Administrator" ? (
-                    <span className="text-xs font-bold text-white">Admin</span>
+                    <span className="text-xs font-bold text-white">( Admin )</span>
                   ) : (
                     <span className="hidden text-xs font-bold text-white"></span>
                   )
