@@ -130,7 +130,7 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard/profile",
     element: (
-      <ProtectPage allowedRoles={['BasicUser']}>
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
         <DashboarProfilePage />
       </ProtectPage>
     )
