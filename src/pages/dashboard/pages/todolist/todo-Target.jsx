@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import { Icon } from "@iconify/react";
+import { Icon } from "@iconify/react";
 
-import { createTodolist } from "../../../../services/todolist";
+import { createTodoCustomTarget } from "../../../../services/todolist";
 import Sidebar from "../../components/sidebar";
 import Navbar from "../../components/header";
 import Time from "../../components/timePicker";
@@ -30,9 +30,9 @@ export default function ToDoListPage() {
     };
 
     try {
-      await createTodolist(newTarget);
+      await createTodoCustomTarget(newTarget);
       navigate("/dashboard/todolist");
-    } catch (err) {
+    } catch (error) {
       alert("Failed to create todolist target");
       navigate("/dashboard/todolist/target", { replace: true });
       setTitle("");

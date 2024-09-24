@@ -41,44 +41,49 @@ const Header = () => {
           </div>
           <div className="relative w-auto h-auto ">
             <button
-              onClick={toggleDropdown}
               className="flex items-center w-full h-full gap-3 px-2 py-3 rounded-md"
             >
-              <Icon
-                icon="mdi:account-box-outline"
-                width="30"
-                height="30"
-                style={{ color: "#ffffff" }}
-              />
-              <div className="flex flex-col items-start">
-                <span className="text-sm font-bold text-white">
+              <Link to="/dashboard/profile" className="flex items-center justify-between w-full h-full space-x-2">
+                <Icon
+                  icon="mdi:account-box-outline"
+                  width="30"
+                  height="30"
+                  style={{ color: "#ffffff" }}
+                />
+                <div className="flex flex-col items-start">
+                  <span className="text-sm font-bold text-white">
+                    {
+                      getUsername ? getUsername : "User Name"
+                    }
+                  </span>
                   {
-                    getUsername ? getUsername : "User Name"
+                    userRole === "Administrator" ? (
+                      <span className="text-xs font-bold text-white">( Admin )</span>
+                    ) : (
+                      <span className="hidden text-xs font-bold text-white"></span>
+                    )
                   }
-                </span>
-                {
-                  userRole === "Administrator" ? (
-                    <span className="text-xs font-bold text-white">( Admin )</span>
-                  ) : (
-                    <span className="hidden text-xs font-bold text-white"></span>
-                  )
-                }
-              </div>
+                </div>
+              </Link>
               {
                 isDropdown ? (
-                  <Icon
-                    icon="mdi:chevron-up"
-                    width="26"
-                    height="26"
-                    style={{ color: "#ffffff" }}
-                  />
+                  <button onClick={toggleDropdown}>
+                    <Icon
+                      icon="mdi:chevron-up"
+                      width="26"
+                      height="26"
+                      style={{ color: "#ffffff" }}
+                    />
+                  </button>
                 ) : (
-                  <Icon
-                    icon="mdi:chevron-down"
-                    width="26"
-                    height="26"
-                    style={{ color: "#ffffff" }}
-                  />
+                  <button onClick={toggleDropdown}>
+                    <Icon
+                      icon="mdi:chevron-down"
+                      width="26"
+                      height="26"
+                      style={{ color: "#ffffff" }}
+                    />
+                  </button>
                 )
               }
               {isDropdown && (

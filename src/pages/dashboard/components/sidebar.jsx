@@ -32,7 +32,7 @@ const Sidebar = () => {
       const response = await api.get(`${menuSidebar}?role=${userRole}`);
       return response.data;
     } catch (error) {
-      console.error("Error fetching sidebar menu:", error);
+      console.error("Error fetching sidebar menu : ", error);
       throw error;
     }
   };
