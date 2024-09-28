@@ -129,6 +129,7 @@ const Sidebar = () => {
                     height="1.3em"
                     viewBox="0 0 16 16"
                   >
+<<<<<<< HEAD
                     <path
                       fill="currentColor"
                       fillRule="evenodd"
@@ -177,6 +178,40 @@ const Sidebar = () => {
                 </span>
               </Link>
             </li>
+=======
+                    <Link
+                      to={item.sidebar_data.endpoint}
+                      className={`text-center flex flex-row items-center ms-5 y-5 py-3 justify-start text-gray-500 hover:text-black w-full`}
+                    >
+                      {/* <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.3em"
+                        height="1.3em"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="none"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M20 19v-8.5a1 1 0 0 0-.4-.8l-7-5.25a1 1 0 0 0-1.2 0l-7 5.25a1 1 0 0 0-.4.8V19a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1"
+                        ></path>
+                      </svg> */}
+                      <div
+                        className="transform -scale-x-100"
+                        dangerouslySetInnerHTML={{ __html: item.sidebar_data.icon_data }}
+                      ></div>
+                      <span
+                        className={`ml-4 transition-all duration-1000 text-black ${open ? "block" : "hidden"}`}>
+                        {item.sidebar_data.sidebar_name}
+                      </span>
+                    </Link>
+                  </li>
+                ))
+              )
+            }
+>>>>>>> 09c5216574b8ddd2429f0a78f6f6ed27d5fcb34b
           </ul>
         </div>
       </nav>
