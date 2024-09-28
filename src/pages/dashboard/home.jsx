@@ -65,14 +65,20 @@ export default function DashboardPage() {
          <div className="mb-5 p-1 mt-[-2%]"></div>
           <div className="">
             <div className="elementr3 flex flex-wrap w-full">
-              <div className="w-full lg:w-1/3 h-[170px] bg-gray-300 border border-gray-900 p-4">
+              <div className="w-full lg:w-1/3 h-[170px] bg-black p-4 text-white">
                 Total Achievement
                 <div className="w-full">
+                  
+                <div className="flex items-center">
   <img
     src={Goal}
     alt="Crown"
-    className="elemen-target p-4 object-contain  h-auto filter grayscale brightness-0"
+    className="elemen-target p-4 object-contain h-auto filter brightness-0 invert"
   />
+  <span className="ml-10 text-5xl font-bold">19</span>
+
+</div>
+
 </div>
 
                 {/* total  achievement*/}
@@ -100,7 +106,7 @@ export default function DashboardPage() {
               </ul>
             </div>
             
-            <div className="w-full lg:w-1/3 h-[170px] bg-gray-300 border border-gray-900 p-4">
+            <div className="w-full lg:w-1/3 h-[170px] bg-white border border-gray-900 p-4">
   <h3 className="font-semibold mb-2">Progress to Rank-up</h3>
   {/* Bar Progress 1: Social Etiquette */}
   <div className="mb-1">
