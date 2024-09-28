@@ -93,7 +93,7 @@ const Sidebar = () => {
                       to={item.sidebar_data.endpoint}
                       className={`text-center flex flex-row items-center ms-5 y-5 py-3 justify-start text-gray-500 hover:text-black w-full`}
                     >
-                      <svg
+                      {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="1.3em"
                         height="1.3em"
@@ -107,11 +107,11 @@ const Sidebar = () => {
                           strokeWidth={2}
                           d="M20 19v-8.5a1 1 0 0 0-.4-.8l-7-5.25a1 1 0 0 0-1.2 0l-7 5.25a1 1 0 0 0-.4.8V19a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1"
                         ></path>
-                      </svg>
-                      {/* <div
+                      </svg> */}
+                      <div
                         className="transform -scale-x-100"
-                        dangerouslySetInnerHTML={{ __html: item.sidebar_data.icon }}
-                      ></div> */}
+                        dangerouslySetInnerHTML={{ __html: item.sidebar_data.icon_data }}
+                      ></div>
                       <span
                         className={`ml-4 transition-all duration-1000 text-black ${open ? "block" : "hidden"}`}>
                         {item.sidebar_data.sidebar_name}

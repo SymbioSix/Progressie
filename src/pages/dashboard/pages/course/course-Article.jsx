@@ -6,59 +6,25 @@ import Sidebar from '../../components/sidebar';
 import Navbar from "../../components/header";
 import CourseCover from "../../assets/images/course-cover.png";
 import ArticleBanner from "../../assets/images/banner-article.png";
+import { Sidecourse } from "../../components/sidecourse";
 
-export default function CoursePage(){
+export default function CoursePage() {
 
     const location = useLocation();
 
     const locationCourse = (path) => {
         if (location.pathname.startsWith(path)) {
-        return "bg-gray-200";
+            return "bg-gray-200";
         }
     };
 
-    return(
+    return (
         <div className='flex flex-row'>
             <Sidebar />
             <Navbar />
             <div className="flex w-full h-full mt-24 ml-20">
                 <div className="flex flex-row w-full h-full gap-10 mt-4 ml-5 mr-8 rounded-2xl">
-                    <div className="flex-col w-[15%]">
-                        <div className='mb-2 text-xl font-bold '>
-                            Courses
-                        </div>
-                        <div className="flex flex-col justify-between w-full">
-                            <button className={`hover:bg-gray-100 rounded-xl pl-1 py-2 flex text-left flex-row items-start gap-4 mb-4  ${locationCourse(
-                                "/dashboard/course/course-Example"
-                            )}`}>
-                                <img src={CourseCover} alt="Course 1" className="w-1/3 rounded-md" />
-                                <div>
-                                    <span className="font-semibold">
-                                        Course Tata Etika
-                                    </span>
-                                    <div className="text-sm text-gray-500">40+ lessons - 4+ hours</div>
-                                </div>
-                            </button>
-                            <button className="hover:bg-gray-100 rounded-xl pl-1 py-2 flex text-left flex-row items-start gap-4 mb-4">
-                                <img src={CourseCover} alt="Course 2" className="w-1/3 rounded-md" />
-                                <div>
-                                    <span className="font-semibold">
-                                        Manajemen Keuangan
-                                    </span>
-                                    <div className="text-sm text-gray-500">45 lessons - 5+ hours</div>
-                                </div>
-                            </button>
-                            <button className="hover:bg-gray-100 rounded-xl pl-1 py-2 flex text-left flex-row items-start gap-4 mb-4">
-                                <img src={CourseCover} alt="Course 3" className="w-1/3 rounded-md" />
-                                <div>
-                                    <span className="font-semibold">
-                                        Menjaga Diri
-                                    </span>
-                                    <div className="text-sm text-gray-500">12 lessons - 2 hours</div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
+                    <Sidecourse />
                     <div className="flex flex-col ml-10 h-auto w-[60%] rounded-2xl p-4">
                         <Link to="/dashboard/course/course-Example/r/recommend">
                             <button className="flex gap-4">
@@ -73,7 +39,7 @@ export default function CoursePage(){
                             </button>
                         </Link>
                         <div className="mt-6 font-bold text-xl">Tips Sopan Santun Ke Orang yang Lebih Tua</div>
-                        <img 
+                        <img
                             src={ArticleBanner} alt="article image"
                             className="mt-4 rounded-xl"
                         />
