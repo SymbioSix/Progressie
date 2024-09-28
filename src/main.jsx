@@ -24,9 +24,13 @@ import DashboardToDoListTargetPage from './pages/dashboard/pages/todolist/todo-T
 import DashboardSettingsPage from './pages/dashboard/pages/setting.jsx';
 import DashboarProfilePage from './pages/dashboard/pages/profile.jsx';
 
+// Course Page
+import CourseReadingPage from './pages/dashboard/pages/course/course-Reading.jsx';
+
 import NotFoundPage from './pages/404.jsx';
 import UnauthorizedPage from './pages/403.jsx';
 import './index.css';
+import CoursePage from './pages/dashboard/pages/course/course-Video.jsx';
 
 const routes = createBrowserRouter([
   {
@@ -86,6 +90,30 @@ const routes = createBrowserRouter([
         <DashboardCoursePage />
       </ProtectPage>
     )
+  },
+  {
+    path: "/dashboard/course/:id",
+    element: (
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
+        <CoursePage />
+      </ProtectPage>
+    ),
+  },
+  {
+    path: "/dashboard/course/:id/r",
+    element: (
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
+        <CourseReadingPage />
+      </ProtectPage>
+    ),
+  },
+  {
+    path: "/dashboard/course/:id/r/recommend",
+    element: (
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
+        <CourseReadingPage />
+      </ProtectPage>
+    ),
   },
   {
     path: "/dashboard/achievement",
