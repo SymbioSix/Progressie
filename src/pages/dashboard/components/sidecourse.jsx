@@ -31,7 +31,7 @@ export const Sidecourse = () => {
                 ) : (
 
                     data.map((course) => (
-                        <Link to={"/dashboard/course/" + course.course_id} key={course.course_id}>
+                        <Link reloadDocument to={"/dashboard/course/" + course.course_id} key={course.course_id}>
                             <button className="hover:bg-gray-100 rounded-xl pl-1 py-2 flex text-left flex-row items-start gap-4 mb-4">
                                 <img src={course.course_image} alt={course.course_name + " Course"} className="w-1/3 rounded-md" />
                                 <div>
