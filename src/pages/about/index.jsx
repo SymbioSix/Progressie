@@ -3,13 +3,20 @@ import Footer from "../../components/footer";
 
 
 import "../../assets/css/about.css";
-import { useEffect, useState } from "react";
 import { getAboutUs } from "../../services/about";
+import { useQuery } from "react-query";
 
 export default function AboutPage() {
-  const [data, setData] = useState([])
-  const response = getAboutUs()
-  response.then((data) => setData(data))
+  const { data, isLoading, error } = useQuery('aboutus', getAboutUs);
+  if (isLoading) {
+    return <span>Loading...</span>
+  }
+
+  if (error != null) {
+    return <span>Something went wrong: {error}</span>
+  }
+
+  console.log(data)
 
   return (
     <>
@@ -39,34 +46,6 @@ export default function AboutPage() {
                 <p>{item.aboutus_component_jobdesc}</p>
               </div>
             ))}
-
-            {/* <div className="p-4 text-center bg-gray-100 rounded-lg shadow-md profile-card">
-              <img src={profileArya} alt="Member 2" className="object-cover w-32 h-32 mx-auto rounded-full" />
-              <h3 className="mt-4 text-xl font-semibold">Arya Wijaya</h3>
-              <p>FULLSTACK </p>
-            </div>
-            <div className="p-4 text-center bg-gray-100 rounded-lg shadow-md profile-card">
-              <img src="/src/assets/images/member3.png" alt="Member 3" className="object-cover w-32 h-32 mx-auto rounded-full" />
-              <h3 className="mt-4 text-xl font-semibold">MUAMAR ZIDAN TRI ANTORO</h3>
-              <p>FRONTEND</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-8 p-4 mt-8 md:grid-cols-3">
-            <div className="p-4 text-center bg-gray-100 rounded-lg shadow-md profile-card">
-              <img src="/src/assets/images/member4.png" alt="Member 4" className="object-cover w-32 h-32 mx-auto rounded-full" />
-              <h3 className="mt-4 text-xl font-semibold">YUSTINUS DWI ADYRA</h3>
-              <p>BACKEND</p>
-            </div>
-            <div className="p-4 text-center bg-gray-100 rounded-lg shadow-md profile-card">
-              <img src="/src/assets/images/member5.png" alt="Member 5" className="object-cover w-32 h-32 mx-auto rounded-full" />
-              <h3 className="mt-4 text-xl font-semibold">MIREKEL ILHAM AKBAR</h3>
-              <p>FRONTEND</p>
-            </div>
-            <div className="p-4 text-center bg-gray-100 rounded-lg shadow-md profile-card">
-              <img src="/src/assets/images/member6.png" alt="Member 6" className="object-cover w-32 h-32 mx-auto rounded-full" />
-              <h3 className="mt-4 text-xl font-semibold">MIKAIL ARDYAS WIBOWO</h3>
-              <p>UI/UX DESIGNER</p>
-            </div> */}
           </div>
         </section>
 
