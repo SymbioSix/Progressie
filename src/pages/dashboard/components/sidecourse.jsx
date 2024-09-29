@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import api from "../../../utils/request";
+import { useQuery } from "react-query";
 
 export const Sidecourse = () => {
-    const [courseItems, setCourseItems] = useState([]);
-    const [error, setError] = useState(null);
     const getCourseData = async () => {
         try {
             let menuCourse = '/courses';
@@ -15,16 +13,13 @@ export const Sidecourse = () => {
             throw error;
         }
     };
-
-    useEffect(() => {
-        getCourseData()
-            .then((data) => setCourseItems(data))
-            .catch((error) => {
-                setError("Not Found");
-                throw error;
-            });
-
-    }, []);
+    const { data, isLoading, error } = useQuery('courses', getCourseData);
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+    if (error != null) {
+        return <span>Something went wrong: {error}</span>
+    }
     return (
         <div className="flex-col w-[15%]">
             <div className='mb-2 text-xl font-bold '>
@@ -35,7 +30,7 @@ export const Sidecourse = () => {
                     <li className="text-center text-red-500">Not Found</li>
                 ) : (
 
-                    courseItems.map((course) => (
+                    data.map((course) => (
                         <Link to={"/dashboard/course/" + course.course_id} key={course.course_id}>
                             <button className="hover:bg-gray-100 rounded-xl pl-1 py-2 flex text-left flex-row items-start gap-4 mb-4">
                                 <img src={course.course_image} alt={course.course_name + " Course"} className="w-1/3 rounded-md" />

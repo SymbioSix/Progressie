@@ -3,17 +3,48 @@ import { useLocation, Link } from "react-router-dom";
 
 import logo from "../../../assets/images/logo-selfie.svg";
 import shortlogo from "../../../assets/images/logo-s.png";
+import { useQuery } from "react-query";
 
 
 const Sidebar = () => {
+
+
+  const location = useLocation();
+
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
   const locationSideMenu = (path) => {
     if (location.pathname === path) {
       return "bg-gray-200";
+
+    } else {
+      return "";
     }
   };
+
+  const getRoleMenu = async () => {
+    try {
+      let menuSidebar = '/dashboard/sidebar';
+      const response = await api.get(`${menuSidebar}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching sidebar menu:", error);
+      throw error;
+
+    }
+  };
+  const { data, isLoading, error } = useQuery('sidebar', getRoleMenu);
+
+
+  if (isLoading) {
+    return <span>Loading...</span>
+  }
+
+  if (error != null) {
+    return <span>Something went wrong: {error}</span>
+  }
+
 
   return (
     <aside className="absolute z-50 flex h-screen">
@@ -45,6 +76,7 @@ const Sidebar = () => {
                 alt="Short logo Selfie"
               />
             </span>
+
             <li
               className={`hover:bg-gray-100 w-full ${locationSideMenu(
                 "/dashboard"
@@ -128,8 +160,20 @@ const Sidebar = () => {
                     width="1.3em"
                     height="1.3em"
                     viewBox="0 0 16 16"
+
+            {
+              error ? (
+                <li className="text-center text-red-500">Not Found</li>
+              ) : (
+                data.map((item, index) => (
+                  <li
+                    key={index}
+                    className={`hover:bg-gray-100 w-full ${locationSideMenu(
+                      item.sidebar_data.endpoint
+                    )}`}
+
                   >
-<<<<<<< HEAD
+
                     <path
                       fill="currentColor"
                       fillRule="evenodd"
@@ -178,26 +222,11 @@ const Sidebar = () => {
                 </span>
               </Link>
             </li>
-=======
+
                     <Link
                       to={item.sidebar_data.endpoint}
                       className={`text-center flex flex-row items-center ms-5 y-5 py-3 justify-start text-gray-500 hover:text-black w-full`}
                     >
-                      {/* <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1.3em"
-                        height="1.3em"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M20 19v-8.5a1 1 0 0 0-.4-.8l-7-5.25a1 1 0 0 0-1.2 0l-7 5.25a1 1 0 0 0-.4.8V19a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1"
-                        ></path>
-                      </svg> */}
                       <div
                         className="transform -scale-x-100"
                         dangerouslySetInnerHTML={{ __html: item.sidebar_data.icon_data }}
@@ -211,7 +240,7 @@ const Sidebar = () => {
                 ))
               )
             }
->>>>>>> 09c5216574b8ddd2429f0a78f6f6ed27d5fcb34b
+
           </ul>
         </div>
       </nav>

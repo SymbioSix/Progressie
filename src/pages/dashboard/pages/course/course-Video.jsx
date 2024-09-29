@@ -7,10 +7,11 @@ import Navbar from "../../components/header";
 import CourseVideo from "../../assets/videos/sample-video.mp4";
 import { Sidecourse } from "../../components/sidecourse";
 import api from "../../../../utils/request";
+import { useQuery } from "react-query";
 
 export default function CoursePage() {
     const [showDescription, setShowDescription] = useState(false);
-    const courseId = useParams()
+    const id = useParams()
     const toggleDescription = () => {
         setShowDescription(prevState => !prevState);
     };
@@ -29,9 +30,7 @@ export default function CoursePage() {
         }
     };
 
-    const [error, setError] = useState(null);
-    const [subcourseItems, setSubcourseItems] = useState([]);
-    const getCourseData = async () => {
+    const getSubcourseData = async () => {
         try {
             let menuCourse = `/courses/${courseId.id}/subcourses`;
             console.log(menuCourse);
@@ -43,15 +42,15 @@ export default function CoursePage() {
         }
     };
 
-    useEffect(() => {
-        getCourseData()
-            .then((data) => setSubcourseItems(data.subcourses))
-            .catch((error) => {
-                setError("Not Found");
-                throw error;
-            });
-    }, []);
+    const { data, isLoading, error } = useQuery('subcourses', getSubcourseData);
 
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+
+    if (error != null) {
+        return <span>Something went wrong: {error}</span>
+    }
 
 
     return (
@@ -65,10 +64,10 @@ export default function CoursePage() {
                         <div className="flex text-left justify-left w-72 bg-white p-4 rounded-lg mb-0 font-bold">
                             <button className={`flex-1 text-gray-500 hover:text-gray-700 transition-all duration-300 rounded-sm")}`}>
                                 <span className={`duration-300 rounded-sm ${locationSection(
-                                    `/dashboard/course/${courseId.id}`
+                                    `/dashboard/course/${id.courseId}`
                                 )}`}>Course</span>
                             </button>
-                            <Link to={"/dashboard/course/" + courseId.id + "/r/recommend"}>
+                            <Link to={"/dashboard/course/" + id.courseId + "/r/recommend"}>
                                 <button className="flex-1 text-gray-500 rounded-sm focus:text-black focus:border-b-4 focus:border-black hover:text-gray-700 transition-all duration-300">
                                     Reading
                                 </button>
@@ -157,191 +156,36 @@ export default function CoursePage() {
                     <div className="flex-row h-full w-[20%] overflow-auto">
                         <div className="flex flex-col h-[60%] shadow-[2px_2.5px_1px_2px_rgba(0,0,0,0.5)] rounded-2xl p-4 mb-4 " style={{ maxHeight: '500px', overflowY: 'auto' }}>
                             <span className="text-xl pb-2 font-bold text-left">Module</span>
-                            {subcourseItems.map((item) => (
-
-                                <div id="container-list-target" className="flex items-center gap-3 p-3">
-                                    <Icon
-                                        icon="teenyicons:tick-circle-solid"
-                                        width="24"
-                                        height="24"
-                                        style={{ color: "#000000" }}
-                                        className="flex-shrink-0"
-                                    />
-                                    <div className="flex flex-col gap-0.25 text-sm">
-                                        <div className="flex flex-row items-center mb-0.5">
-                                            <Icon
-                                                icon="f7:play-rectangle"
-                                                width="20"
-                                                height="20"
-                                                style={{ color: "black" }}
-                                                className="items-center flex-shrink-0 flex-row mr-2"
-                                            />
-                                            <span className="font-bold text-black">
-                                                {item.sequence} - {item.subcourse_name}
+                            {data.subcourses.map((item) => (
+                                <Link to={"/dashboard/course/" + id.courseId + "/" + item.subcourse_id}>
+                                    <div id="container-list-target" className="flex items-center gap-3 p-3">
+                                        <Icon
+                                            icon="teenyicons:tick-circle-solid"
+                                            width="24"
+                                            height="24"
+                                            style={{ color: "#000000" }}
+                                            className="flex-shrink-0"
+                                        />
+                                        <div className="flex flex-col gap-0.25 text-sm">
+                                            <div className="flex flex-row items-center mb-0.5">
+                                                <Icon
+                                                    icon="f7:play-rectangle"
+                                                    width="20"
+                                                    height="20"
+                                                    style={{ color: "black" }}
+                                                    className="items-center flex-shrink-0 flex-row mr-2"
+                                                />
+                                                <span className="font-bold text-black">
+                                                    {item.sequence} - {item.subcourse_name}
+                                                </span>
+                                            </div>
+                                            <span className="text-black pl-7 text-xs">
+                                                (3 : 36)
                                             </span>
                                         </div>
-                                        <span className="text-black pl-7 text-xs">
-                                            (3 : 36)
-                                        </span>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
-                            {/* <div id="container-list-target" className="flex items-center gap-3 p-3">
-                                <Icon
-                                    icon="ion:contrast-outline"
-                                    width="24"
-                                    height="24"
-                                    style={{ color: "#000000" }}
-                                    className="flex-shrink-0"
-                                />
-                                <div className="flex flex-col gap-0.25 text-sm">
-                                    <div className="flex flex-row items-center mb-0.5">
-                                        <Icon
-                                            icon="f7:play-rectangle"
-                                            width="20"
-                                            height="20"
-                                            style={{ color: "black" }}
-                                            className="items-center flex-shrink-0 flex-row mr-2"
-                                        />
-                                        <span className="font-bold text-black">
-                                            02 - Hormat Kepada Orang Tua
-                                        </span>
-                                    </div>
-                                    <span className="text-black pl-7 text-xs">
-                                        (13 : 09)
-                                    </span>
-                                </div>
-                            </div>
-                            <div id="container-list-target" className="flex items-center gap-3 p-3">
-                                <Icon
-                                    icon="ion:ellipse-outline"
-                                    width="24"
-                                    height="24"
-                                    style={{ color: "#000000" }}
-                                    className="flex-shrink-0"
-                                />
-                                <div className="flex flex-col gap-0.25 text-sm">
-                                    <div className="flex flex-row items-center mb-0.5">
-                                        <Icon
-                                            icon="f7:play-rectangle"
-                                            width="20"
-                                            height="20"
-                                            style={{ color: "black" }}
-                                            className="items-center flex-shrink-0 flex-row mr-2"
-                                        />
-                                        <span className="font-bold text-black">
-                                            03 - Product Designer Role Design
-                                        </span>
-                                    </div>
-                                    <span className="text-black pl-7 text-xs">
-                                        (3 : 36)
-                                    </span>
-                                </div>
-                            </div>
-                            <div id="container-list-target" className="flex items-center gap-3 p-3">
-                                <Icon
-                                    icon="ion:ellipse-outline"
-                                    width="24"
-                                    height="24"
-                                    style={{ color: "#000000" }}
-                                    className="flex-shrink-0"
-                                />
-                                <div className="flex flex-col gap-0.25 text-sm">
-                                    <div className="flex flex-row items-center mb-0.5">
-                                        <Icon
-                                            icon="f7:play-rectangle"
-                                            width="20"
-                                            height="20"
-                                            style={{ color: "black" }}
-                                            className="items-center flex-shrink-0 flex-row mr-2"
-                                        />
-                                        <span className="font-bold text-black">
-                                            04 - A Little Bit of a Background
-                                        </span>
-                                    </div>
-                                    <span className="text-black pl-7 text-xs">
-                                        (7 : 34)
-                                    </span>
-                                </div>
-                            </div>
-                            <div id="container-list-target" className="flex items-center gap-3 p-3">
-                                <Icon
-                                    icon="ion:ellipse-outline"
-                                    width="24"
-                                    height="24"
-                                    style={{ color: "#000000" }}
-                                    className="flex-shrink-0"
-                                />
-                                <div className="flex flex-col gap-0.25 text-sm">
-                                    <div className="flex flex-row items-center mb-0.5">
-                                        <Icon
-                                            icon="f7:play-rectangle"
-                                            width="20"
-                                            height="20"
-                                            style={{ color: "black" }}
-                                            className="items-center flex-shrink-0 flex-row mr-2"
-                                        />
-                                        <span className="font-bold text-black">
-                                            05 - Benefits of Being a Productive Person
-                                        </span>
-                                    </div>
-                                    <span className="text-black pl-7 text-xs">
-                                        (5 : 12)
-                                    </span>
-                                </div>
-                            </div>
-                            <div id="container-list-target" className="flex items-center gap-3 p-3">
-                                <Icon
-                                    icon="ion:ellipse-outline"
-                                    width="24"
-                                    height="24"
-                                    style={{ color: "#000000" }}
-                                    className="flex-shrink-0"
-                                />
-                                <div className="flex flex-col gap-0.25 text-sm">
-                                    <div className="flex flex-row items-center mb-0.5">
-                                        <Icon
-                                            icon="f7:play-rectangle"
-                                            width="20"
-                                            height="20"
-                                            style={{ color: "black" }}
-                                            className="items-center flex-shrink-0 flex-row mr-2"
-                                        />
-                                        <span className="font-bold text-black">
-                                            06 - Is This a Carreer for Me?
-                                        </span>
-                                    </div>
-                                    <span className="text-black pl-7 text-xs">
-                                        (8 : 45)
-                                    </span>
-                                </div>
-                            </div>
-                            <div id="container-list-target" className="flex items-center gap-3 p-3">
-                                <Icon
-                                    icon="ion:ellipse-outline"
-                                    width="24"
-                                    height="24"
-                                    style={{ color: "#000000" }}
-                                    className="flex-shrink-0"
-                                />
-                                <div className="flex flex-col gap-0.25 text-sm">
-                                    <div className="flex flex-row items-center mb-0.5">
-                                        <Icon
-                                            icon="f7:play-rectangle"
-                                            width="20"
-                                            height="20"
-                                            style={{ color: "black" }}
-                                            className="items-center flex-shrink-0 flex-row mr-2"
-                                        />
-                                        <span className="font-bold text-black">
-                                            07 - Misconceptions About
-                                        </span>
-                                    </div>
-                                    <span className="text-black pl-7 text-xs">
-                                        (7 : 22)
-                                    </span>
-                                </div>
-                            </div> */}
                         </div>
                         <div className="flex flex-col h-[60%] overflow-auto gap-4 rounded-2xl p-4 bg-gray-100">
                             <span className="text-xl font-bold text-center">To do list</span>
