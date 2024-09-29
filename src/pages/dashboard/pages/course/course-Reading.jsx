@@ -1,10 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import Sidebar from '../../components/sidebar';
 import Navbar from "../../components/header";
 import PostCardRec from "../../components/postcardReccomend";
 import CourseCover from "../../assets/images/course-cover.png";
 import { Sidecourse } from "../../components/sidecourse";
+import { useQuery } from "react-query";
+import api from "../../../../utils/request";
 
 export default function CoursePage() {
 
@@ -38,7 +40,7 @@ export default function CoursePage() {
             readTime: '3 min read',
         },
     ];
-
+    const id = useParams()
     const location = useLocation();
 
     const locationSection = (path) => {
@@ -59,6 +61,26 @@ export default function CoursePage() {
         }
     };
 
+    const getSubcourseData = async () => {
+        try {
+            let menuCourse = `/courses/${id.subcourseId}/subcourse`;
+            console.log(menuCourse);
+            const response = await api.get(`${menuCourse}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching course data:", error);
+            throw error;
+        }
+    };
+    const { data, isLoading, error } = useQuery('subcourse', getSubcourseData);
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
+
+    if (error != null) {
+        return <span>Something went wrong: {error}</span>
+    }
+
     return (
         <div className='flex flex-row'>
             <Sidebar />
@@ -68,7 +90,7 @@ export default function CoursePage() {
                     <Sidecourse />
                     <div className="flex flex-col h-auto w-[60%] rounded-2xl p-4">
                         <div class="flex justify-between w-72 bg-white p-4 rounded-lg font-bold">
-                            <Link to="/dashboard/course/course-Example/">
+                            <Link to={`/dashboard/course/${id.courseId}`}>
                                 <button className={`flex-1 text-gray-500 hover:text-gray-700 transition-all duration-300 rounded-sm"
                                 )}`}>
                                     Course
@@ -77,22 +99,22 @@ export default function CoursePage() {
                             <button className={`flex-1 text-gray-500 hover:text-gray-700 transition-all duration-300 rounded-sm"
                             )}`}>
                                 <span className={`duration-300 rounded-sm ${locationSection(
-                                    "/dashboard/course/course-Example/r"
+                                    "/dashboard/course/" + id.courseId + "/" + id.subcourseId + "/r"
                                 )}`}>Reading</span>
                             </button>
                         </div>
                         <div class="flex justify-between w-72 bg-white p-4 rounded-lg">
-                            <Link to="/dashboard/course/course-Example/r/marked">
+                            <Link to={`/dashboard/course/${id.courseId}/${id.subcourseId}/r/marked`}>
                                 <button className={`flex-1 text-gray-500 hover:text-gray-700 transition-all duration-300 rounded-sm"
                                 )}`}>
                                     Marked
                                 </button>
                             </Link>
-                            <Link to="/dashboard/course/course-Example/r/recommend">
+                            <Link to={`/dashboard/course/${id.courseId}/${id.subcourseId}/r/recommend`}>
                                 <button className={`flex-1 text-gray-500 hover:text-gray-700 transition-all duration-300 rounded-sm"
                             )}`}>
                                     <span className={`duration-300 rounded-sm ${locationReading(
-                                        "/dashboard/course/course-Example/r/recommend"
+                                        "/dashboard/course/" + id.courseId + "/" + id.subcourseId + "/recommend"
                                     )}`}>
                                         Recommended
                                     </span>
