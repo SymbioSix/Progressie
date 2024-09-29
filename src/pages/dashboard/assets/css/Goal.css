@@ -1,0 +1,27 @@
+.elemen-target {
+    width: 35%; /* Ukuran default untuk lebar lebih dari 1008.619px */
+}
+
+
+@media (max-width: 1208.619px) {
+    .elemen-target {
+        width: 40%; /* Ukuran ketika lebar viewport kurang dari 1008.619px */
+    }
+}
+
+@media (max-width: 1008.619px) {
+    .elemen-target {
+        width: 20%; /* Ukuran ketika lebar viewport kurang dari 1008.619px */
+    }
+}
+@media (max-width: 700.619px) {
+    .elemen-target {
+        width: 30%; /* Ukuran ketika lebar viewport kurang dari 1008.619px */
+    }
+}
+
+@media (max-width: 500.619px) {
+    .elemen-target {
+        width: 50%; /* Ukuran ketika lebar viewport kurang dari 1008.619px */
+    }
+}

@@ -21,6 +21,7 @@ import DashboardAchievementPage from './pages/dashboard/pages/achievement.jsx';
 import DashboardToDoListPage from './pages/dashboard/pages/todolist/index.jsx';
 import DashboardToDoListCoursePage from './pages/dashboard/pages/todolist/todo-Course.jsx';
 import DashboardToDoListTargetPage from './pages/dashboard/pages/todolist/todo-Target.jsx';
+import DashboardLeaderboardPage from './pages/dashboard/pages/homePageContent/leaderboard.jsx';
 import DashboardSettingsPage from './pages/dashboard/pages/setting.jsx';
 import DashboarProfilePage from './pages/dashboard/pages/profile.jsx';
 
@@ -189,6 +190,15 @@ const routes = createBrowserRouter([
       </ProtectPage>
     )
   },
+  {
+    path: "/dashboard/home/leaderboard",
+    element: (
+      <ProtectPage allowedRoles={['BasicUser']}>
+        <DashboardLeaderboardPage />
+      </ProtectPage>
+    )
+  }
+  ,
   {
     path: "/dashboard/settings",
     element: (
