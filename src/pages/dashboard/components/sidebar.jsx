@@ -5,13 +5,11 @@ import { UserContext } from "../../../context/user";
 import api from "../../../utils/request";
 import logo from "../../../assets/images/logo-selfie.svg";
 import shortlogo from "../../../assets/images/logo-s.png";
+import { useQuery } from "react-query";
 
 
 const Sidebar = () => {
   const location = useLocation();
-  const { userRole } = useContext(UserContext);
-  const [sidebarItems, setSidebarItems] = useState([]);
-  const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
 
   const locationSideMenu = (path) => {
@@ -24,29 +22,23 @@ const Sidebar = () => {
 
   const getRoleMenu = async () => {
     try {
-      if (!userRole) {
-        throw new Error("User role is not available");
-      }
-
       let menuSidebar = '/dashboard/sidebar';
-      const response = await api.get(`${menuSidebar}?role=${userRole}`);
+      const response = await api.get(`${menuSidebar}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching sidebar menu:", error);
       throw error;
     }
   };
+  const { data, isLoading, error } = useQuery('sidebar', getRoleMenu);
 
-  useEffect(() => {
-    if (userRole) {
-      getRoleMenu()
-        .then((data) => setSidebarItems(data))
-        .catch((error) => {
-          setError("Not Found");
-          throw error;
-        });
-    }
-  }, [userRole]);
+  if (isLoading) {
+    return <span>Loading...</span>
+  }
+
+  if (error != null) {
+    return <span>Something went wrong: {error}</span>
+  }
 
   return (
     <aside className="absolute z-50 flex h-screen">
@@ -82,7 +74,7 @@ const Sidebar = () => {
               error ? (
                 <li className="text-center text-red-500">Not Found</li>
               ) : (
-                sidebarItems.map((item, index) => (
+                data.map((item, index) => (
                   <li
                     key={index}
                     className={`hover:bg-gray-100 w-full ${locationSideMenu(
@@ -93,21 +85,6 @@ const Sidebar = () => {
                       to={item.sidebar_data.endpoint}
                       className={`text-center flex flex-row items-center ms-5 y-5 py-3 justify-start text-gray-500 hover:text-black w-full`}
                     >
-                      {/* <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1.3em"
-                        height="1.3em"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M20 19v-8.5a1 1 0 0 0-.4-.8l-7-5.25a1 1 0 0 0-1.2 0l-7 5.25a1 1 0 0 0-.4.8V19a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1"
-                        ></path>
-                      </svg> */}
                       <div
                         className="transform -scale-x-100"
                         dangerouslySetInnerHTML={{ __html: item.sidebar_data.icon_data }}
