@@ -16,17 +16,28 @@ export default function DashboardPage() {
   useTokenExpirationCheck();
 
   const [tasks, setTasks] = useState([
-    { task: "Menyelesaikan tugas React", completed: false },
-    { task: "Menghubungi klien untuk meeting", completed: false },
-    { task: "Mengembangkan fitur baru", completed: false },
-    { task: "Mereview PR dari tim", completed: false },
-    { task: "Membuat dokumentasi", completed: false },
-    { task: "Menyiapkan presentasi untuk meeting besok", completed: false },
-    { task: "Meng-update aplikasi dengan fitur terbaru", completed: false },
-    { task: "Menghadiri workshop keamanan jaringan", completed: false },
-    { task: "Melakukan code review", completed: false },
-    { task: "Melatih anggota tim baru", completed: false }
+      { task: "Menyelesaikan Subcourse 1", completed: false },
+      { task: "Menyelesaikan Subcourse 2", completed: false },
+      { task: "Menyelesaikan Subcourse 3", completed: false },
+      { task: "Menyelesaikan Subcourse 4", completed: false },
+      { task: "Menyelesaikan Subcourse 5", completed: false },
+      { task: "Menyelesaikan Subcourse 6", completed: false },
+      { task: "Menyelesaikan Subcourse 7", completed: false },
+      { task: "Menyelesaikan Subcourse 8", completed: false },
+      { task: "Menyelesaikan Subcourse 9", completed: false },
+      { task: "Menyelesaikan Subcourse 10", completed: false },
+      { task: "Meditasi pagi selama 10 menit", completed: false },
+      { task: "Membaca buku self-improvement 30 menit", completed: false },
+      { task: "Olahraga ringan selama 30 menit", completed: false },
+      { task: "Menulis jurnal harian", completed: false },
+      { task: "Belajar keterampilan baru", completed: false },
+      { task: "Mengikuti sesi refleksi diri", completed: false },
+      { task: "Menetapkan tujuan mingguan dan evaluasi", completed: false },
+      { task: "Mendengarkan podcast inspiratif", completed: false },
+      { task: "Mengurangi screen time selama 2 jam", completed: false },
+      { task: "Mencoba aktivitas baru yang mendukung pengembangan diri", completed: false }
   ]);
+  
 
   const [resetTrigger, setResetTrigger] = useState(false);
 

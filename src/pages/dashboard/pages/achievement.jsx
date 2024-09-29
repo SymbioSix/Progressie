@@ -1,36 +1,39 @@
 // AchievementPage.jsx
 import React, { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../../context/user'; // Path konteks user
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 export default function AchievementPage() {
+    const { userData } = useContext(UserContext); // Ambil data user dari context
+    const username = userData?.user_data?.username || 'User'; // Pastikan ada username atau fallback ke 'User'
     const [selectedAchievement, setSelectedAchievement] = useState(null);
 
     // Data pencapaian dengan properti isAchieved untuk menandai pencapaian
     const achievements = [
-        { id: 1, title: 'Best Developer Award', description: 'Received for outstanding performance in software development.', isAchieved: true },
-        { id: 2, title: 'Hackathon Winner', description: 'Won 1st place in an international hackathon with innovative project ideas.', isAchieved: true },
-        { id: 3, title: 'Top GPA in Informatics', description: 'Achieved the highest GPA in the department of Informatics.', isAchieved: true },
-        { id: 4, title: 'Employee of the Month', description: 'Recognized for consistent excellence and leadership in the team.', isAchieved: true },
-        { id: 5, title: 'Contribution to Open Source', description: 'Acknowledged for contributing to open source projects that benefit the community.', isAchieved: true },
-        { id: 6, title: 'Top 10% in Global Coding Competition', description: 'Achieved top 10% ranking in a global coding competition.', isAchieved: true },
-        { id: 7, title: 'Published Research Paper', description: 'Published a research paper in a recognized journal.', isAchieved: false },
-        { id: 8, title: 'Mentorship Award', description: 'Received award for mentoring junior developers.', isAchieved: false },
-        { id: 9, title: 'Certified Project Manager', description: 'Achieved certification as a professional project manager.', isAchieved: false },
-        { id: 10, title: 'Leadership in Technology', description: 'Recognized for leadership in a large-scale technology project.', isAchieved: false },
-        { id: 11, title: 'Completed Data Science Bootcamp', description: 'Successfully completed a comprehensive data science bootcamp.', isAchieved: true },
-        { id: 12, title: 'Contributed to Technical Blog', description: 'Written technical articles for a popular programming blog.', isAchieved: true },
-        { id: 13, title: 'Created Open Source Library', description: 'Created and maintained a widely used open source library.', isAchieved: true },
-        { id: 14, title: 'Received Scholarship for Study', description: 'Awarded a scholarship for academic excellence.', isAchieved: true },
-        { id: 15, title: 'Invited Speaker at Tech Conference', description: 'Invited as a speaker at a prestigious technology conference.', isAchieved: true },
-        { id: 16, title: 'Organized Community Meetup', description: 'Organized a successful community meetup with notable speakers.', isAchieved: true },
-        { id: 17, title: 'Top Performer in Team', description: 'Recognized as top performer in a development team.', isAchieved: true },
-        { id: 18, title: 'Launched a Successful Product', description: 'Launched a product that achieved significant user adoption.', isAchieved: true },
-        { id: 19, title: 'Certified Cloud Architect', description: 'Certified as a professional cloud architect.', isAchieved: true },
-        { id: 20, title: 'Completed 100 Days of Code', description: 'Completed the 100 Days of Code challenge successfully.', isAchieved: true },
-        
+    { id: 1, title: 'Meditasi pagi selama 10 menit', description: 'Melakukan meditasi selama 10 menit setiap pagi.', isAchieved: true },
+    { id: 2, title: 'Membaca buku self-improvement 30 menit', description: 'Membaca buku pengembangan diri selama 30 menit.', isAchieved: true },
+    { id: 3, title: 'Olahraga ringan selama 30 menit', description: 'Melakukan olahraga ringan selama 30 menit.', isAchieved: true },
+    { id: 4, title: 'Menulis jurnal harian', description: 'Menulis jurnal tentang kegiatan atau refleksi harian.', isAchieved: true },
+    { id: 5, title: 'Belajar keterampilan baru', description: 'Meluangkan waktu untuk belajar keterampilan baru.', isAchieved: true },
+    { id: 6, title: 'Mengikuti sesi refleksi diri', description: 'Berpartisipasi dalam sesi refleksi diri untuk evaluasi pribadi.', isAchieved: false },
+    { id: 7, title: 'Menetapkan tujuan mingguan dan evaluasi', description: 'Menetapkan dan mengevaluasi tujuan untuk satu minggu ke depan.', isAchieved: false },
+    { id: 8, title: 'Mendengarkan podcast inspiratif', description: 'Mendengarkan podcast yang memberikan inspirasi untuk pengembangan diri.', isAchieved: false },
+    { id: 9, title: 'Mengurangi screen time selama 2 jam', description: 'Mengurangi waktu penggunaan layar gadget sebanyak 2 jam.', isAchieved: false },
+    { id: 10, title: 'Mencoba aktivitas baru yang mendukung pengembangan diri', description: 'Mencoba aktivitas baru yang dapat membantu pengembangan diri.', isAchieved: false },
+    { id: 11, title: 'Meditasi pagi selama 10 menit', description: 'Melakukan meditasi selama 10 menit setiap pagi.', isAchieved: true },
+    { id: 12, title: 'Membaca buku self-improvement 30 menit', description: 'Membaca buku pengembangan diri selama 30 menit.', isAchieved: true },
+    { id: 13, title: 'Olahraga ringan selama 30 menit', description: 'Melakukan olahraga ringan selama 30 menit.', isAchieved: true },
+    { id: 14, title: 'Menulis jurnal harian', description: 'Menulis jurnal tentang kegiatan atau refleksi harian.', isAchieved: true },
+    { id: 15, title: 'Belajar keterampilan baru', description: 'Meluangkan waktu untuk belajar keterampilan baru.', isAchieved: true },
+    { id: 16, title: 'Mengikuti sesi refleksi diri', description: 'Berpartisipasi dalam sesi refleksi diri untuk evaluasi pribadi.', isAchieved: true },
+    { id: 17, title: 'Menetapkan tujuan mingguan dan evaluasi', description: 'Menetapkan dan mengevaluasi tujuan untuk satu minggu ke depan.', isAchieved: true },
+    { id: 18, title: 'Mendengarkan podcast inspiratif', description: 'Mendengarkan podcast yang memberikan inspirasi untuk pengembangan diri.', isAchieved: true },
+    { id: 19, title: 'Mengurangi screen time selama 2 jam', description: 'Mengurangi waktu penggunaan layar gadget sebanyak 2 jam.', isAchieved: true },
+    { id: 20, title: 'Mencoba aktivitas baru yang mendukung pengembangan diri', description: 'Mencoba aktivitas baru yang dapat membantu pengembangan diri.', isAchieved: true}
     ];
 
     // Memisahkan pencapaian yang sudah dicapai dan yang belum
@@ -49,9 +52,9 @@ export default function AchievementPage() {
             description: "have understood how to become a sigma human",
             date: new Date().toLocaleDateString(),
             time: new Date().toLocaleTimeString(),
-            username: 'Arya Wijaya', // Gantilah dengan data username yang diambil dari state atau props
+            username: username, // Gunakan username dari context
         };
-
+    
         const certificateContent = document.createElement('div');
         certificateContent.style.width = '600px';
         certificateContent.style.padding = '20px';
@@ -98,7 +101,7 @@ export default function AchievementPage() {
                                 <button
                                     onClick={handleConvertToCertificate}
                                     className="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition duration-200"
-                                    disabled={!selectedAchievement} // Disable jika tidak ada pencapaian yang dipilih
+                                    disabled={selectedAchievement} // Disable jika tidak ada pencapaian yang dipilih
                                 >
                                     Convert to Certificate
                                 </button>
