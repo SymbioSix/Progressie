@@ -32,6 +32,17 @@ import UnauthorizedPage from './pages/403.jsx';
 import './index.css';
 import CoursePage from './pages/dashboard/pages/course/course-Video.jsx';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -42,7 +53,10 @@ const routes = createBrowserRouter([
   {
     path: "/about",
     element: (
-      <AboutPage />
+      <QueryClientProvider client={queryClient}>
+        <AboutPage />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     )
   },
   {
@@ -79,7 +93,9 @@ const routes = createBrowserRouter([
     path: "/dashboard",
     element: (
       <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
-        <DashboardPage />
+        <QueryClientProvider client={queryClient}>
+          <DashboardPage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
@@ -87,31 +103,49 @@ const routes = createBrowserRouter([
     path: "/dashboard/course",
     element: (
       <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
-        <DashboardCoursePage />
+        <QueryClientProvider client={queryClient}>
+          <DashboardCoursePage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
   {
-    path: "/dashboard/course/:id",
+    path: "/dashboard/course/:courseId",
     element: (
       <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
-        <CoursePage />
+        <QueryClientProvider client={queryClient}>
+          <CoursePage />
+        </QueryClientProvider>
       </ProtectPage>
     ),
   },
   {
-    path: "/dashboard/course/:id/r",
+    path: "/dashboard/course/:courseId/:subcourseId",
     element: (
       <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
-        <CourseReadingPage />
+        <QueryClientProvider client={queryClient}>
+          <CoursePage />
+        </QueryClientProvider>
       </ProtectPage>
     ),
   },
   {
-    path: "/dashboard/course/:id/r/recommend",
+    path: "/dashboard/course/:courseId/:subcourseId/r",
     element: (
       <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
-        <CourseReadingPage />
+        <QueryClientProvider client={queryClient}>
+          <CourseReadingPage />
+        </QueryClientProvider>
+      </ProtectPage>
+    ),
+  },
+  {
+    path: "/dashboard/course/:courseId/:subcourseId/r/recommend",
+    element: (
+      <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
+        <QueryClientProvider client={queryClient}>
+          <CourseReadingPage />
+        </QueryClientProvider>
       </ProtectPage>
     ),
   },
@@ -119,7 +153,9 @@ const routes = createBrowserRouter([
     path: "/dashboard/achievement",
     element: (
       <ProtectPage allowedRoles={['BasicUser']}>
-        <DashboardAchievementPage />
+        <QueryClientProvider client={queryClient}>
+          <DashboardAchievementPage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
@@ -127,7 +163,9 @@ const routes = createBrowserRouter([
     path: "/dashboard/todolist",
     element: (
       <ProtectPage allowedRoles={['BasicUser']}>
-        <DashboardToDoListPage />
+        <QueryClientProvider client={queryClient}>
+          <DashboardToDoListPage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
@@ -135,7 +173,9 @@ const routes = createBrowserRouter([
     path: "/dashboard/todolist/course",
     element: (
       <ProtectPage allowedRoles={['BasicUser']}>
-        <DashboardToDoListCoursePage />
+        <QueryClientProvider client={queryClient}>
+          <DashboardToDoListCoursePage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
@@ -143,7 +183,9 @@ const routes = createBrowserRouter([
     path: "/dashboard/todolist/target",
     element: (
       <ProtectPage allowedRoles={['BasicUser']}>
-        <DashboardToDoListTargetPage />
+        <QueryClientProvider client={queryClient}>
+          <DashboardToDoListTargetPage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
@@ -151,7 +193,9 @@ const routes = createBrowserRouter([
     path: "/dashboard/settings",
     element: (
       <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
-        <DashboardSettingsPage />
+        <QueryClientProvider client={queryClient}>
+          <DashboardSettingsPage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
@@ -159,7 +203,9 @@ const routes = createBrowserRouter([
     path: "/dashboard/profile",
     element: (
       <ProtectPage allowedRoles={['BasicUser', 'Administrator']}>
-        <DashboarProfilePage />
+        <QueryClientProvider client={queryClient}>
+          <DashboarProfilePage />
+        </QueryClientProvider>
       </ProtectPage>
     )
   },
